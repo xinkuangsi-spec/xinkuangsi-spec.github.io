@@ -4,6 +4,10 @@
 
 - 主页: https://xinkuangsi-spec.github.io/
 - 英文版主页 (English version): https://xinkuangsi-spec.github.io/en.html
+- 法语版 (Version française): https://xinkuangsi-spec.github.io/fr.html
+- 德语版 (Deutsche Version): https://xinkuangsi-spec.github.io/de.html
+- 葡萄牙语版 (Versão em português): https://xinkuangsi-spec.github.io/pt.html
+- 西班牙语版 (Versión en español): https://xinkuangsi-spec.github.io/es.html
 - 发展史时间线: https://xinkuangsi-spec.github.io/#history
 - 核心概念: https://xinkuangsi-spec.github.io/#concepts
 - 动手实验（收益率计算器）: https://xinkuangsi-spec.github.io/#lab
