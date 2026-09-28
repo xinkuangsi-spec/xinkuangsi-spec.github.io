@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="一份从巴舍利耶到机器学习的量化金融简史，以及可直接动手的收益率、波动率与均线策略入门教程。" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <title>量化发展史与教程</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f4f2ec;
+      --surface: #ffffff;
+      --surface-2: #e9e6de;
+      --ink: #121212;
+      --muted: #5b5a55;
+      --line: #cbc6ba;
+      --accent: #e24b2d;
+      --accent-soft: #ffe0d7;
+      --green: #0a725d;
+      --green-soft: #d8efe9;
+      --code: #171a18;
+      --code-ink: #edf4ee;
+      --shadow: 0 18px 46px rgba(28, 25, 20, .09);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #111311;
+        --surface: #1a1d1a;
+        --surface-2: #242824;
+        --ink: #f5f1e8;
+        --muted: #bbb8af;
+        --line: #3c403b;
+        --accent: #ff765c;
+        --accent-soft: #51291f;
+        --green: #65d6bc;
+        --green-soft: #173b33;
+        --code: #090b0a;
+        --code-ink: #e9f1eb;
+        --shadow: 0 18px 46px rgba(0,0,0,.28);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans SC", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .progress { position: fixed; inset: 0 auto auto 0; width: 0; height: 3px; background: var(--accent); z-index: 20; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-mark { font: 600 13px/1 "IBM Plex Mono", monospace; letter-spacing: .06em; color: var(--accent); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+    .nav-links a { text-decoration: none; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
+    .hero { padding: 78px 0 54px; border-bottom: 1px solid var(--line); }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 68px; align-items: end; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 600 12px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; color: var(--green); }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h1 { max-width: 760px; margin: 18px 0 26px; font-size: clamp(46px, 7vw, 92px); line-height: .98; letter-spacing: -.055em; font-weight: 900; }
+    .hero-copy { max-width: 650px; margin: 0; font-size: clamp(17px, 2vw, 22px); color: var(--muted); }
+    .hero-actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border: 1px solid var(--ink); text-decoration: none; font-weight: 700; font-size: 14px; }
+    .button.primary { color: var(--paper); background: var(--ink); }
+    .button:hover { transform: translateY(-1px); }
+    .terminal { background: var(--code); color: var(--code-ink); padding: 24px; box-shadow: var(--shadow); }
+    .terminal-top { display: flex; justify-content: space-between; color: #9fa69f; font: 12px/1 "IBM Plex Mono", monospace; }
+    .terminal-chart { height: 150px; margin: 28px 0 20px; }
+    .terminal-chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .terminal-chart .grid { stroke: #343b36; stroke-width: 1; }
+    .terminal-chart .curve { fill: none; stroke: #ff775d; stroke-width: 3; vector-effect: non-scaling-stroke; }
+    .terminal-chart .avg { fill: none; stroke: #72d7bf; stroke-width: 1.6; stroke-dasharray: 5 5; vector-effect: non-scaling-stroke; }
+    .terminal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .terminal-stats span { display: block; color: #9fa69f; font: 11px/1.2 "IBM Plex Mono", monospace; }
+    .terminal-stats strong { display: block; margin-top: 7px; font: 600 18px/1 "IBM Plex Mono", monospace; }
+    .section { padding: 88px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 70px; }
+    .section-head { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 34px; margin-bottom: 44px; }
+    .section-index { padding-top: 8px; font: 500 12px/1 "IBM Plex Mono", monospace; color: var(--accent); }
+    h2 { margin: 0; max-width: 790px; font-size: clamp(34px, 5vw, 58px); line-height: 1.08; letter-spacing: -.035em; }
+    .section-intro { max-width: 720px; margin: 18px 0 0; color: var(--muted); font-size: 17px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px 214px; }
+    .filter { border: 1px solid var(--line); color: var(--muted); background: transparent; padding: 8px 13px; border-radius: 100px; font-size: 13px; }
+    .filter.active { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+    .timeline { margin-left: 214px; }
+    .era { position: relative; display: grid; grid-template-columns: 110px 1fr; gap: 28px; padding: 30px 0; border-top: 1px solid var(--line); }
+    .era:last-child { border-bottom: 1px solid var(--line); }
+    .year { font: 600 22px/1.2 "IBM Plex Mono", monospace; color: var(--accent); }
+    .era h3 { margin: 0 0 8px; font-size: 22px; line-height: 1.35; }
+    .era p { margin: 0; max-width: 720px; color: var(--muted); }
+    .tag { display: inline-block; margin-top: 13px; padding: 3px 8px; background: var(--surface-2); color: var(--muted); font: 500 11px/1.5 "IBM Plex Mono", monospace; }
+    .era[hidden] { display: none; }
+    .principles { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .principle { min-height: 280px; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .principle .num { font: 600 12px/1 "IBM Plex Mono", monospace; color: var(--accent); }
+    .principle h3 { margin: 70px 0 12px; font-size: 23px; line-height: 1.25; }
+    .principle p { margin: 0; color: var(--muted); }
+    .lab { display: grid; grid-template-columns: minmax(0, .9fr) minmax(380px, 1.1fr); gap: 24px; align-items: stretch; }
+    .lesson, .calculator { background: var(--surface); box-shadow: var(--shadow); }
+    .lesson { padding: 34px; }
+    .lesson-step { color: var(--accent); font: 600 12px/1 "IBM Plex Mono", monospace; }
+    .lesson h3, .calculator h3 { margin: 12px 0 14px; font-size: 29px; line-height: 1.2; }
+    .lesson p, .calculator p { color: var(--muted); }
+    .formula { margin: 24px 0; padding: 18px; background: var(--surface-2); font: 500 14px/1.7 "IBM Plex Mono", monospace; overflow-wrap: anywhere; }
+    .lesson ol { margin: 20px 0 0; padding-left: 22px; }
+    .lesson li { padding: 4px 0; }
+    .calculator { padding: 34px; border-top: 5px solid var(--green); }
+    label { display: block; margin: 24px 0 8px; font-size: 13px; font-weight: 700; }
+    .input-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+    input { min-width: 0; width: 100%; height: 48px; padding: 0 14px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 0; font-family: "IBM Plex Mono", monospace; }
+    input:focus { outline: 2px solid var(--green); outline-offset: 2px; }
+    .calc-btn { border: 0; padding: 0 18px; background: var(--green); color: #fff; font-weight: 700; }
+    .message { min-height: 24px; margin: 8px 0 0; font-size: 13px; color: var(--accent); }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 18px; }
+    .metric { background: var(--surface); padding: 18px 14px; }
+    .metric span { display: block; color: var(--muted); font-size: 12px; }
+    .metric strong { display: block; margin-top: 8px; font: 600 21px/1 "IBM Plex Mono", monospace; }
+    #miniChart { display: block; width: 100%; height: 130px; margin-top: 22px; background: var(--paper); }
+    .strategy-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: 24px; }
+    .code-card { position: relative; background: var(--code); color: var(--code-ink); padding: 28px; overflow: hidden; }
+    .code-card pre { margin: 28px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1.75 "IBM Plex Mono", monospace; }
+    .code-title { color: #9fa69f; font: 12px/1 "IBM Plex Mono", monospace; }
+    .copy { position: absolute; top: 18px; right: 18px; border: 1px solid #4a514c; background: transparent; color: #dce5de; padding: 7px 10px; font-size: 12px; }
+    .code-card .kw { color: #ff8c72; }
+    .code-card .fn { color: #7de0c7; }
+    .code-card .cm { color: #8f9991; }
+    .rules { background: var(--surface); padding: 30px; }
+    .rules h3 { margin: 0 0 16px; font-size: 24px; }
+    .rule { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 17px 0; border-top: 1px solid var(--line); }
+    .rule:last-child { border-bottom: 1px solid var(--line); }
+    .rule b { color: var(--green); font: 600 13px/1.7 "IBM Plex Mono", monospace; }
+    .rule p { margin: 0; color: var(--muted); font-size: 14px; }
+    .path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .path article { padding: 24px 22px; background: var(--surface); }
+    .path .week { color: var(--accent); font: 600 12px/1 "IBM Plex Mono", monospace; }
+    .path h3 { margin: 28px 0 10px; font-size: 19px; }
+    .path p { margin: 0; color: var(--muted); font-size: 14px; }
+    .sources { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .source { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 20px; background: var(--surface); text-decoration: none; }
+    .source:hover { background: var(--surface-2); }
+    .source span { color: var(--muted); font-size: 13px; }
+    .source b { display: block; font-size: 15px; }
+    .source i { font-style: normal; color: var(--accent); }
+    .money-plan { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .money-choice { padding: 32px; background: var(--green); color: #fff; }
+    .money-choice .status { display: inline-block; padding: 5px 9px; border: 1px solid rgba(255,255,255,.5); font: 600 11px/1.4 "IBM Plex Mono", monospace; }
+    .money-choice h3 { margin: 52px 0 14px; font-size: 32px; line-height: 1.15; }
+    .money-choice p { color: rgba(255,255,255,.82); }
+    .money-choice a { display: inline-flex; margin-top: 16px; color: #fff; font-weight: 700; }
+    .money-compare { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); }
+    .money-compare article { padding: 26px; background: var(--surface); }
+    .money-compare article + article { border-left: 1px solid var(--line); }
+    .money-compare h3 { margin: 0 0 22px; font-size: 20px; }
+    .money-compare dl { margin: 0; }
+    .money-compare dt { margin-top: 18px; color: var(--muted); font-size: 12px; }
+    .money-compare dd { margin: 4px 0 0; font-weight: 700; }
+    .next-steps { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+    .next-steps div { padding: 22px 22px 0 0; }
+    .next-steps b { display: block; color: var(--accent); font: 600 12px/1 "IBM Plex Mono", monospace; }
+    .next-steps p { margin: 11px 0 0; color: var(--muted); font-size: 14px; }
+    .notice { margin-top: 28px; padding: 18px 20px; border: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    footer { padding: 34px 0 48px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 12px; }
+    .footer-inner a { color: var(--ink); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    @media (max-width: 840px) {
+      .wrap { width: min(100% - 28px, 680px); }
+      .nav-inner { align-items: flex-start; flex-direction: column; padding: 13px 0; gap: 10px; }
+      .nav-links { gap: 4px 16px; }
+      .hero { padding-top: 54px; }
+      .hero-grid, .lab, .strategy-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 38px; }
+      .section { padding: 68px 0; }
+      .section-head { grid-template-columns: 1fr; gap: 12px; }
+      .filters, .timeline { margin-left: 0; }
+      .principles { grid-template-columns: 1fr; }
+      .principle { min-height: 0; }
+      .principle h3 { margin-top: 30px; }
+      .path { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .nav-links a:nth-child(2), .nav-links a:nth-child(4), .nav-links a:nth-child(5) { display: none; }
+      h1 { font-size: clamp(44px, 15vw, 64px); }
+      .hero { padding-top: 42px; }
+      .terminal { padding: 19px; }
+      .terminal-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .terminal-stats strong { font-size: 14px; }
+      .era { grid-template-columns: 72px 1fr; gap: 18px; }
+      .year { font-size: 17px; }
+      .era h3 { font-size: 19px; }
+      .lesson, .calculator { padding: 24px 20px; }
+      .input-row { grid-template-columns: 1fr; }
+      .calc-btn { height: 46px; }
+      .metrics { grid-template-columns: 1fr; }
+      .path, .sources, .money-plan { grid-template-columns: 1fr; }
+      .money-compare { grid-template-columns: 1fr; }
+      .money-compare article + article { border-left: 0; border-top: 1px solid var(--line); }
+      .next-steps { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <nav class="nav" aria-label="页面导航">
+    <div class="wrap nav-inner">
+      <span class="nav-mark">QF / 1900—NOW</span>
+      <div class="nav-links">
+        <a href="#history">发展史</a>
+        <a href="#concepts">核心概念</a>
+        <a href="#lab">动手实验</a>
+        <a href="#strategy">策略雏形</a>
+        <a href="#monetization">变现说明</a>
+        <a href="#sources">资料来源</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">一部用数据理解市场的历史</span>
+          <h1>从纸笔公式<br>到微秒决策</h1>
+          <p class="hero-copy">量化金融不是“预测明天涨跌”的魔法。它是一套把假设写清楚、把风险算出来、再用数据检验的工作方法。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#history">沿时间线开始</a>
+            <a class="button" href="#lab">直接做实验</a>
+          </div>
+        </div>
+        <aside class="terminal" aria-label="量化研究示意图">
+          <div class="terminal-top"><span>RESEARCH.LOG</span><span>EDUCATIONAL</span></div>
+          <div class="terminal-chart" aria-hidden="true">
+            <svg viewBox="0 0 420 150" preserveAspectRatio="none">
+              <path class="grid" d="M0 30H420M0 75H420M0 120H420" />
+              <path class="avg" d="M0 115 C80 110 120 92 170 90 S260 66 420 42" />
+              <path class="curve" d="M0 126 L28 116 L50 121 L75 95 L99 101 L124 83 L146 91 L171 66 L195 74 L218 61 L243 79 L267 48 L291 58 L318 30 L340 43 L363 19 L386 25 L420 8" />
+            </svg>
+          </div>
+          <div class="terminal-stats">
+            <div><span>HYPOTHESIS</span><strong>01</strong></div>
+            <div><span>TEST</span><strong>RUN</strong></div>
+            <div><span>RISK</span><strong>FIRST</strong></div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section class="section" id="history">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">01 / HISTORY</div>
+          <div>
+            <h2>六个转折点，勾勒一百多年的量化进化</h2>
+            <p class="section-intro">从随机过程、组合选择，到程序化交易与机器学习：工具不断变化，但核心问题始终是“收益从哪里来，风险如何承担”。</p>
+          </div>
+        </div>
+        <div class="filters" role="group" aria-label="筛选历史事件">
+          <button class="filter active" data-filter="all">全部</button>
+          <button class="filter" data-filter="theory">理论</button>
+          <button class="filter" data-filter="compute">计算</button>
+          <button class="filter" data-filter="market">市场</button>
+        </div>
+        <div class="timeline">
+          <article class="era" data-category="theory">
+            <div class="year">1900</div>
+            <div><h3>巴舍利耶把随机运动带入金融</h3><p>路易·巴舍利耶在《投机理论》中用随机过程研究期权定价。它常被视为数学金融的起点。</p><span class="tag">随机过程</span></div>
+          </article>
+          <article class="era" data-category="theory">
+            <div class="year">1952</div>
+            <div><h3>马科维茨重写“不要把鸡蛋放在一个篮子里”</h3><p>均值—方差框架把投资从挑选单只证券，推进到分析资产之间的协方差与整体组合风险。</p><span class="tag">组合理论</span></div>
+          </article>
+          <article class="era" data-category="theory market">
+            <div class="year">1973</div>
+            <div><h3>Black–Scholes–Merton 连接定价与对冲</h3><p>连续时间模型与动态复制给出欧式期权定价方法，也推动衍生品风险管理走向系统化。</p><span class="tag">衍生品定价</span></div>
+          </article>
+          <article class="era" data-category="compute market">
+            <div class="year">1980s</div>
+            <div><h3>计算机走上交易台</h3><p>电子化市场、指数套利与程序化交易扩张。研究速度、执行质量和交易成本开始与模型本身同等重要。</p><span class="tag">程序化交易</span></div>
+          </article>
+          <article class="era" data-category="compute market">
+            <div class="year">2000s</div>
+            <div><h3>数据与速度成为基础设施</h3><p>更细粒度行情、低延迟系统与自动化执行普及；量化从机构的专用工具逐步扩散到更广泛的市场参与者。</p><span class="tag">高频 · 数据工程</span></div>
+          </article>
+          <article class="era" data-category="compute theory">
+            <div class="year">2010s—</div>
+            <div><h3>机器学习加入工具箱</h3><p>非线性模型、另类数据与自然语言处理扩大了信号空间，同时也让过拟合、可解释性和数据治理更关键。</p><span class="tag">机器学习</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="concepts">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">02 / MINDSET</div>
+          <div><h2>先建立研究习惯，再寻找“神奇策略”</h2><p class="section-intro">可靠的量化流程不从指标开始，而从可证伪的假设、严格的数据边界与可承受的风险开始。</p></div>
+        </div>
+        <div class="principles">
+          <article class="principle"><span class="num">A / 01</span><h3>收益是序列，不是单个数字</h3><p>同样的总收益，可能来自平稳积累，也可能来自一次幸运跳涨。先看路径，再看终点。</p></article>
+          <article class="principle"><span class="num">A / 02</span><h3>样本外表现才是考场</h3><p>调参用的数据不能再用来证明策略有效。训练期、验证期和测试期要按时间严格分开。</p></article>
+          <article class="principle"><span class="num">A / 03</span><h3>风险管理不是补丁</h3><p>仓位、最大回撤、流动性与交易成本都应进入策略设计，而不是亏损后才补上的规则。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">03 / LAB</div>
+          <div><h2>实验一：把价格变成可比较的收益率</h2><p class="section-intro">输入一段按时间排序的价格。计算器会得到简单收益率、年化波动率与零无风险利率假设下的示意夏普比率。</p></div>
+        </div>
+        <div class="lab">
+          <article class="lesson">
+            <span class="lesson-step">概念 / 约 5 分钟</span>
+            <h3>为什么不用价格直接比较？</h3>
+            <p>价格尺度不同：从 10 到 11 与从 100 到 101 的“涨 1 元”含义完全不同。收益率将变化标准化。</p>
+            <div class="formula">简单收益率 rₜ = (Pₜ − Pₜ₋₁) / Pₜ₋₁</div>
+            <ol>
+              <li>检查价格是否按时间排序。</li>
+              <li>每个价格与前一项比较。</li>
+              <li>用收益率均值描述中心，用标准差描述波动。</li>
+            </ol>
+          </article>
+          <section class="calculator" aria-labelledby="calcTitle">
+            <span class="lesson-step">互动计算器 / 教学样例</span>
+            <h3 id="calcTitle">收益与风险速算</h3>
+            <p>可替换为你自己的收盘价，至少输入 3 个正数。</p>
+            <label for="prices">价格序列（逗号分隔）</label>
+            <div class="input-row">
+              <input id="prices" value="100, 101, 99, 103, 105, 104, 108, 110" inputmode="decimal" aria-describedby="calcMessage" />
+              <button class="calc-btn" id="calculate">重新计算</button>
+            </div>
+            <div class="message" id="calcMessage" aria-live="polite"></div>
+            <div class="metrics" aria-live="polite">
+              <div class="metric"><span>累计收益</span><strong id="totalReturn">—</strong></div>
+              <div class="metric"><span>年化波动</span><strong id="volatility">—</strong></div>
+              <div class="metric"><span>示意夏普</span><strong id="sharpe">—</strong></div>
+            </div>
+            <svg id="miniChart" viewBox="0 0 560 130" role="img" aria-label="输入价格序列的折线图"></svg>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="strategy">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">04 / STARTER</div>
+          <div><h2>实验二：写出一个最小均线规则</h2><p class="section-intro">短均线上穿长均线时持有，反之空仓。它不是盈利承诺，而是学习“信号—仓位—收益—成本”链条的清晰起点。</p></div>
+        </div>
+        <div class="strategy-grid">
+          <article class="code-card">
+            <span class="code-title">PYTHON / PANDAS</span>
+            <button class="copy" id="copyCode">复制代码</button>
+            <pre id="code"><span class="cm"># df 需要包含按时间升序排列的 close 列</span>
+df[<span class="fn">"fast"</span>] = df[<span class="fn">"close"</span>].rolling(<span class="fn">20</span>).mean()
+df[<span class="fn">"slow"</span>] = df[<span class="fn">"close"</span>].rolling(<span class="fn">60</span>).mean()
+
+<span class="cm"># 当天收盘产生信号，下一期才执行，避免未来函数</span>
+df[<span class="fn">"signal"</span>] = (df[<span class="fn">"fast"</span>] &gt; df[<span class="fn">"slow"</span>]).astype(int)
+df[<span class="fn">"position"</span>] = df[<span class="fn">"signal"</span>].shift(<span class="fn">1</span>).fillna(<span class="fn">0</span>)
+
+df[<span class="fn">"ret"</span>] = df[<span class="fn">"close"</span>].pct_change()
+df[<span class="fn">"turnover"</span>] = df[<span class="fn">"position"</span>].diff().abs().fillna(<span class="fn">0</span>)
+cost = <span class="fn">0.0005</span>
+df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</span>] * df[<span class="fn">"ret"</span>] - cost * df[<span class="fn">"turnover"</span>]</pre>
+          </article>
+          <aside class="rules">
+            <h3>回测前的四道闸</h3>
+            <div class="rule"><b>01</b><p><strong>消除未来函数</strong><br>当天收盘后得到的信号，最早从下一交易期计入。</p></div>
+            <div class="rule"><b>02</b><p><strong>扣除真实成本</strong><br>手续费、点差与滑点会吞掉频繁交易策略的优势。</p></div>
+            <div class="rule"><b>03</b><p><strong>保留样本外区间</strong><br>最后一段历史数据不参与调参，只用于最终检查。</p></div>
+            <div class="rule"><b>04</b><p><strong>检查极端情景</strong><br>关注最大回撤、连续亏损和流动性，而不只看平均收益。</p></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="path">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">05 / ROADMAP</div>
+          <div><h2>四周入门路线</h2><p class="section-intro">每周交付一个小作品。比“看完所有课程再开始”更有效。</p></div>
+        </div>
+        <div class="path">
+          <article><span class="week">WEEK 01</span><h3>数据与收益</h3><p>读取价格、处理缺失值，计算简单收益与对数收益。</p></article>
+          <article><span class="week">WEEK 02</span><h3>风险与组合</h3><p>理解波动率、相关性、分散化与最大回撤。</p></article>
+          <article><span class="week">WEEK 03</span><h3>信号与回测</h3><p>完成均线策略，处理信号滞后并计入交易成本。</p></article>
+          <article><span class="week">WEEK 04</span><h3>验证与复盘</h3><p>做时间切分、参数敏感性检查，并写一页研究结论。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="monetization">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">06 / REVENUE</div>
+          <div><h2>变现选择：先从低准入广告网络开始</h2><p class="section-intro">对刚上线、尚无稳定流量的网站，优先考虑没有最低流量要求、审核快、起付额低的方案；等内容与搜索流量成熟后，再测试更严格的平台。</p></div>
+        </div>
+        <div class="money-plan">
+          <article class="money-choice">
+            <span class="status">已选方案 · 待接入账号代码</span>
+            <h3>首选 Adsterra</h3>
+            <p>Adsterra 官方发布商指南称：无最低流量要求、可快速审核；Paxum 起付额 5 美元、PayPal 25 美元，按 NET15 结算。具体资格、地区和支付方式以申请时条款为准。</p>
+            <a href="https://adsterra.com/blog/set-up-publishers-dashboard/" target="_blank" rel="noopener noreferrer">查看发布商要求与官方说明 ↗</a>
+          </article>
+          <div class="money-compare" aria-label="变现方案比较">
+            <article>
+              <h3>Adsterra</h3>
+              <dl>
+                <dt>流量门槛</dt><dd>官方称无最低要求</dd>
+                <dt>审核</dt><dd>官方称可快速开始</dd>
+                <dt>低起付路径</dt><dd>$5（Paxum）</dd>
+                <dt>当前状态</dt><dd>等待站主开户与广告代码</dd>
+              </dl>
+            </article>
+            <article>
+              <h3>Google AdSense</h3>
+              <dl>
+                <dt>流量门槛</dt><dd>未公布固定最低值</dd>
+                <dt>审核</dt><dd>需内容与政策审核</dd>
+                <dt>美元付款阈值</dt><dd>通常 $100</dd>
+                <dt>适合阶段</dt><dd>内容与合规页面完善后</dd>
+              </dl>
+            </article>
+          </div>
+        </div>
+        <div class="next-steps" aria-label="接入步骤">
+          <div><b>STEP 01</b><p>站主自行注册发布商账户并完成身份、税务与收款资料。这些信息不能由网站代填。</p></div>
+          <div><b>STEP 02</b><p>在广告平台创建广告位，取得专属代码；接入前页面不会展示模拟广告或虚假收益。</p></div>
+          <div><b>STEP 03</b><p>优先使用不遮挡教程的原生横幅，持续观察速度、跳出率与每千次展示收益。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">07 / SOURCES</div>
+          <div><h2>继续查证，而不是只记结论</h2><p class="section-intro">以下资料用于核对关键历史节点。外部链接将在新窗口打开。</p></div>
+        </div>
+        <div class="sources">
+          <a class="source" href="https://www.jstor.org/stable/j.ctt7scn4" target="_blank" rel="noopener noreferrer"><div><b>巴舍利耶《投机理论》</b><span>Princeton / JSTOR · 1900 起点与英译本</span></div><i>↗</i></a>
+          <a class="source" href="https://www.nobelprize.org/prizes/economic-sciences/1990/markowitz/facts/" target="_blank" rel="noopener noreferrer"><div><b>Harry Markowitz：组合选择</b><span>Nobel Prize · 1952 论文与现代组合理论</span></div><i>↗</i></a>
+          <a class="source" href="https://www.nobelprize.org/prizes/economic-sciences/1997/summary/" target="_blank" rel="noopener noreferrer"><div><b>1997 年经济学奖</b><span>Nobel Prize · Merton 与 Scholes 的衍生品定价方法</span></div><i>↗</i></a>
+          <a class="source" href="https://en.wikipedia.org/wiki/Black–Scholes_model" target="_blank" rel="noopener noreferrer"><div><b>Black–Scholes 模型概览</b><span>Wikipedia · 公式、历史与扩展阅读入口</span></div><i>↗</i></a>
+        </div>
+        <p class="notice"><strong>风险提示：</strong>本页仅用于教育与研究，不构成投资建议。历史回测不代表未来表现；任何策略都可能亏损，实盘前应核对数据、成本、合规要求与自身风险承受能力。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>量化研究的第一条原则：先定义风险，再讨论收益。</span>
+      <a href="#history">返回时间线 ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var filters = document.querySelectorAll('.filter');
+      var eras = document.querySelectorAll('.era');
+      filters.forEach(function (button) {
+        button.addEventListener('click', function () {
+          filters.forEach(function (b) { b.classList.remove('active'); });
+          button.classList.add('active');
+          var filter = button.getAttribute('data-filter');
+          eras.forEach(function (era) {
+            var categories = era.getAttribute('data-category').split(' ');
+            era.hidden = filter !== 'all' && categories.indexOf(filter) === -1;
+          });
+        });
+      });
+
+      function calculate() {
+        var input = document.getElementById('prices');
+        var message = document.getElementById('calcMessage');
+        var values = input.value.split(/[,，\s]+/).filter(Boolean).map(Number);
+        if (values.length < 3 || values.some(function (v) { return !isFinite(v) || v <= 0; })) {
+          message.textContent = '请输入至少 3 个大于 0 的有效价格。';
+          return;
+        }
+        message.textContent = '';
+        var returns = [];
+        for (var i = 1; i < values.length; i++) returns.push(values[i] / values[i - 1] - 1);
+        var mean = returns.reduce(function (a, b) { return a + b; }, 0) / returns.length;
+        var variance = returns.length > 1 ? returns.reduce(function (sum, r) { return sum + Math.pow(r - mean, 2); }, 0) / (returns.length - 1) : 0;
+        var dailyVol = Math.sqrt(variance);
+        var annualVol = dailyVol * Math.sqrt(252);
+        var annualReturn = mean * 252;
+        var ratio = annualVol ? annualReturn / annualVol : 0;
+        var total = values[values.length - 1] / values[0] - 1;
+        document.getElementById('totalReturn').textContent = (total * 100).toFixed(2) + '%';
+        document.getElementById('volatility').textContent = (annualVol * 100).toFixed(2) + '%';
+        document.getElementById('sharpe').textContent = ratio.toFixed(2);
+        drawChart(values);
+      }
+
+      function drawChart(values) {
+        var svg = document.getElementById('miniChart');
+        var w = 560, h = 130, pad = 14;
+        var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
+        var range = max - min || 1;
+        var points = values.map(function (v, i) {
+          var x = pad + i * (w - pad * 2) / Math.max(values.length - 1, 1);
+          var y = h - pad - (v - min) / range * (h - pad * 2);
+          return x.toFixed(1) + ',' + y.toFixed(1);
+        }).join(' ');
+        var ns = 'http://www.w3.org/2000/svg';
+        svg.innerHTML = '';
+        [32, 65, 98].forEach(function (y) {
+          var line = document.createElementNS(ns, 'line');
+          line.setAttribute('x1', '0'); line.setAttribute('x2', String(w)); line.setAttribute('y1', String(y)); line.setAttribute('y2', String(y));
+          line.setAttribute('stroke', 'var(--line)'); line.setAttribute('stroke-width', '1');
+          svg.appendChild(line);
+        });
+        var poly = document.createElementNS(ns, 'polyline');
+        poly.setAttribute('points', points); poly.setAttribute('fill', 'none'); poly.setAttribute('stroke', 'var(--green)'); poly.setAttribute('stroke-width', '3'); poly.setAttribute('vector-effect', 'non-scaling-stroke');
+        svg.appendChild(poly);
+      }
+
+      document.getElementById('calculate').addEventListener('click', calculate);
+      document.getElementById('prices').addEventListener('keydown', function (event) { if (event.key === 'Enter') calculate(); });
+      document.getElementById('copyCode').addEventListener('click', function () {
+        var button = this;
+        navigator.clipboard.writeText(document.getElementById('code').innerText).then(function () {
+          button.textContent = '已复制';
+          setTimeout(function () { button.textContent = '复制代码'; }, 1600);
+        }).catch(function () { button.textContent = '复制失败'; });
+      });
+      window.addEventListener('scroll', function () {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        document.getElementById('progress').style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+      }, { passive: true });
+      calculate();
+    })();
+  </script>
+</body>
+</html>
