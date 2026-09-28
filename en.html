@@ -324,6 +324,7 @@
       <span class="nav-mark">QF / 1900—NOW</span>
       <div class="nav-links">
         <a href="#history">History</a>
+      <a href="/admin.html" rel="nofollow">管理</a>
         <a href="#concepts">Concepts</a>
         <a href="#lab">Lab</a>
         <a href="#strategy">Strategy</a>
@@ -345,8 +346,8 @@
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow">A history of markets, told through data</span>
-          <h1>From Paper Formulas<br>to Microsecond Decisions</h1>
-          <p class="hero-copy">Quantitative finance isn’t magic that predicts tomorrow’s prices. It’s a working method: write your assumptions down, quantify the risk, and test everything against data.</p>
+          <h1><!--A:hero_title-->From Paper Formulas<br>to Microsecond Decisions<!--/A:hero_title--></h1>
+          <p class="hero-copy"><!--A:hero_sub-->Quantitative finance isn’t magic that predicts tomorrow’s prices. It’s a working method: write your assumptions down, quantify the risk, and test everything against data.<!--/A:hero_sub--></p>
           <div class="hero-actions">
             <a class="button primary" href="#history">Start the timeline</a>
             <a class="button" href="#lab">Jump to the lab</a>
@@ -573,12 +574,12 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
           <div><h2>Quant trading: six questions beginners ask most</h2><p class="section-intro">Each answer leads with a one-sentence conclusion, then the key details — quick to scan, easy to cite.</p></div>
         </div>
         <div class="faq">
-          <article class="faq-item"><h3>What is quantitative trading?</h3><p>Quantitative trading uses mathematical models and computer programs to support investment decisions. It turns “what to buy, when, and how much” into explicit rules, then tests them on historical data. Unlike discretionary trading, its edge lies in discipline, repeatability, and measurable risk — not magic that predicts prices.</p></article>
-          <article class="faq-item"><h3>Where did quantitative finance begin?</h3><p>The widely accepted starting point is Louis Bachelier’s 1900 doctoral thesis, <i>Théorie de la spéculation</i>, the first work to study option pricing with stochastic processes. Markowitz’s portfolio theory (1952) and the Black–Scholes–Merton option pricing model (1973) then turned finance into computable mathematics, step by step.</p></article>
-          <article class="faq-item"><h3>Can a complete beginner learn quantitative trading? What background is needed?</h3><p>Yes — but you’ll need three foundations: Python programming (data work), probability and statistics (to understand volatility and risk), and finance basics (returns, portfolios, derivatives). This site’s four-week roadmap follows exactly that order: compute returns first, then risk and portfolios, then your first moving-average strategy, and finally out-of-sample validation.</p></article>
-          <article class="faq-item"><h3>Does quantitative trading always make money?</h3><p>No. Any strategy can lose money, and past backtests don’t predict future performance. The real value of quant is making risk explicit: max drawdown, transaction costs, overfitting, and out-of-sample failure all matter more than average return. The “four gates before backtesting” on this page — no look-ahead, real costs, an out-of-sample reserve, extreme scenarios — are exactly where beginners get hurt most.</p></article>
-          <article class="faq-item"><h3>What is mean–variance portfolio theory?</h3><p>Harry Markowitz’s 1952 framework: investors shouldn’t look only at an asset’s expected return in isolation, but at covariances between assets, using diversification to lower total portfolio risk. It turned “don’t put all your eggs in one basket” into a computable optimization problem — the beginning of modern portfolio theory.</p></article>
-          <article class="faq-item"><h3>What are the most common backtesting mistakes?</h3><p>Three: ① look-ahead bias — using data that didn’t exist yet at decision time; ② overfitting — parameters that only work on historical data; ③ ignoring costs — commissions and slippage devour the profits of high-turnover strategies. The fixes: lag signals by one period, deduct real costs, and hold out an out-of-sample window for the final check only.</p></article>
+          <article class="faq-item"><h3><!--A:faq_q1-->What is quantitative trading?<!--/A:faq_q1--></h3><p><!--A:faq_a1-->Quantitative trading uses mathematical models and computer programs to support investment decisions. It turns “what to buy, when, and how much” into explicit rules, then tests them on historical data. Unlike discretionary trading, its edge lies in discipline, repeatability, and measurable risk — not magic that predicts prices.<!--/A:faq_a1--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q2-->Where did quantitative finance begin?<!--/A:faq_q2--></h3><p><!--A:faq_a2-->The widely accepted starting point is Louis Bachelier’s 1900 doctoral thesis, <i>Théorie de la spéculation</i>, the first work to study option pricing with stochastic processes. Markowitz’s portfolio theory (1952) and the Black–Scholes–Merton option pricing model (1973) then turned finance into computable mathematics, step by step.<!--/A:faq_a2--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q3-->Can a complete beginner learn quantitative trading? What background is needed?<!--/A:faq_q3--></h3><p><!--A:faq_a3-->Yes — but you’ll need three foundations: Python programming (data work), probability and statistics (to understand volatility and risk), and finance basics (returns, portfolios, derivatives). This site’s four-week roadmap follows exactly that order: compute returns first, then risk and portfolios, then your first moving-average strategy, and finally out-of-sample validation.<!--/A:faq_a3--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q4-->Does quantitative trading always make money?<!--/A:faq_q4--></h3><p><!--A:faq_a4-->No. Any strategy can lose money, and past backtests don’t predict future performance. The real value of quant is making risk explicit: max drawdown, transaction costs, overfitting, and out-of-sample failure all matter more than average return. The “four gates before backtesting” on this page — no look-ahead, real costs, an out-of-sample reserve, extreme scenarios — are exactly where beginners get hurt most.<!--/A:faq_a4--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q5-->What is mean–variance portfolio theory?<!--/A:faq_q5--></h3><p><!--A:faq_a5-->Harry Markowitz’s 1952 framework: investors shouldn’t look only at an asset’s expected return in isolation, but at covariances between assets, using diversification to lower total portfolio risk. It turned “don’t put all your eggs in one basket” into a computable optimization problem — the beginning of modern portfolio theory.<!--/A:faq_a5--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q6-->What are the most common backtesting mistakes?<!--/A:faq_q6--></h3><p><!--A:faq_a6-->Three: ① look-ahead bias — using data that didn’t exist yet at decision time; ② overfitting — parameters that only work on historical data; ③ ignoring costs — commissions and slippage devour the profits of high-turnover strategies. The fixes: lag signals by one period, deduct real costs, and hold out an out-of-sample window for the final check only.<!--/A:faq_a6--></p></article>
         </div>
       </div>
     </section>
@@ -602,7 +603,7 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
 
   <footer>
     <div class="wrap footer-inner">
-      <span>The first principle of quantitative research: define risk before discussing returns. Last updated: 2026-09-28.</span>
+      <span><!--A:footer_note-->The first principle of quantitative research: define risk before discussing returns. Last updated: 2026-09-28.<!--/A:footer_note--></span>
       <a href="#history">Back to the timeline ↑</a>
     </div>
   </footer>

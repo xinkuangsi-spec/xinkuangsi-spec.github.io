@@ -324,6 +324,7 @@
       <span class="nav-mark">QF / 1900—NOW</span>
       <div class="nav-links">
         <a href="#history">História</a>
+      <a href="/admin.html" rel="nofollow">管理</a>
         <a href="#concepts">Conceitos</a>
         <a href="#lab">Lab</a>
         <a href="#strategy">Estratégia</a>
@@ -345,8 +346,8 @@
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow">Uma história dos mercados, contada através dos dados</span>
-          <h1>Das fórmulas no papel<br>às decisões em microssegundos</h1>
-          <p class="hero-copy">Finanças quantitativas não são mágica para prever os preços de amanhã. São um método de trabalho: escreva suas hipóteses, quantifique o risco e teste tudo contra os dados.</p>
+          <h1><!--A:hero_title-->Das fórmulas no papel<br>às decisões em microssegundos<!--/A:hero_title--></h1>
+          <p class="hero-copy"><!--A:hero_sub-->Finanças quantitativas não são mágica para prever os preços de amanhã. São um método de trabalho: escreva suas hipóteses, quantifique o risco e teste tudo contra os dados.<!--/A:hero_sub--></p>
           <div class="hero-actions">
             <a class="button primary" href="#history">Começar pela linha do tempo</a>
             <a class="button" href="#lab">Ir direto ao laboratório</a>
@@ -573,12 +574,12 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
           <div><h2>Trading quant: as seis perguntas que iniciantes mais fazem</h2><p class="section-intro">Cada resposta começa com uma conclusão em uma frase e depois os detalhes essenciais — rápida de ler, fácil de citar.</p></div>
         </div>
         <div class="faq">
-          <article class="faq-item"><h3>O que é trading quantitativo?</h3><p>O trading quantitativo usa modelos matemáticos e programas de computador para apoiar decisões de investimento. Transforma “o que comprar, quando e quanto” em regras explícitas e as testa em dados históricos. Diferentemente do trading discricionário, sua vantagem está na disciplina, na repetibilidade e no risco mensurável — não em mágica para prever preços.</p></article>
-          <article class="faq-item"><h3>Onde começaram as finanças quantitativas?</h3><p>O ponto de partida amplamente aceito é a tese de doutorado de Louis Bachelier, de 1900, <i>Théorie de la spéculation</i>, o primeiro trabalho a estudar a precificação de opções com processos estocásticos. A teoria de portfólio de Markowitz (1952) e o modelo de precificação de opções de Black–Scholes–Merton (1973) transformaram, passo a passo, as finanças em matemática computável.</p></article>
-          <article class="faq-item"><h3>Um iniciante pode aprender trading quantitativo? Que base é necessária?</h3><p>Sim — mas você vai precisar de três bases: programação em Python (trabalho com dados), probabilidade e estatística (para entender volatilidade e risco) e fundamentos de finanças (retornos, portfólios, derivativos). O roteiro de quatro semanas deste site segue exatamente essa ordem: primeiro calcule retornos, depois risco e portfólios, em seguida sua primeira estratégia de médias móveis e, por fim, a validação fora da amostra.</p></article>
-          <article class="faq-item"><h3>Trading quantitativo sempre dá lucro?</h3><p>Não. Qualquer estratégia pode dar prejuízo, e backtests passados não preveem o desempenho futuro. O verdadeiro valor do quant é tornar o risco explícito: drawdown máximo, custos de transação, sobreajuste e falha fora da amostra importam mais do que o retorno médio. As “quatro barreiras antes do backtest” desta página — sem antecipação, custos reais, reserva fora da amostra, cenários extremos — são exatamente onde os iniciantes mais se machucam.</p></article>
-          <article class="faq-item"><h3>O que é a teoria de portfólio de média–variância?</h3><p>O arcabouço de Harry Markowitz, de 1952: o investidor não deve olhar apenas o retorno esperado de um ativo isolado, mas as covariâncias entre os ativos, usando a diversificação para reduzir o risco total do portfólio. Transformou o ditado “não coloque todos os ovos na mesma cesta” em um problema de otimização computável — o início da moderna teoria de portfólio.</p></article>
-          <article class="faq-item"><h3>Quais são os erros mais comuns no backtest?</h3><p>Três: ① viés de antecipação — usar dados que ainda não existiam no momento da decisão; ② sobreajuste — parâmetros que só funcionam nos dados históricos; ③ ignorar custos — corretagem e slippage corroem os lucros de estratégias de alto giro. As correções: defasar os sinais em um período, deduzir os custos reais e reservar uma janela fora da amostra apenas para a checagem final.</p></article>
+          <article class="faq-item"><h3><!--A:faq_q1-->O que é trading quantitativo?<!--/A:faq_q1--></h3><p><!--A:faq_a1-->O trading quantitativo usa modelos matemáticos e programas de computador para apoiar decisões de investimento. Transforma “o que comprar, quando e quanto” em regras explícitas e as testa em dados históricos. Diferentemente do trading discricionário, sua vantagem está na disciplina, na repetibilidade e no risco mensurável — não em mágica para prever preços.<!--/A:faq_a1--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q2-->Onde começaram as finanças quantitativas?<!--/A:faq_q2--></h3><p><!--A:faq_a2-->O ponto de partida amplamente aceito é a tese de doutorado de Louis Bachelier, de 1900, <i>Théorie de la spéculation</i>, o primeiro trabalho a estudar a precificação de opções com processos estocásticos. A teoria de portfólio de Markowitz (1952) e o modelo de precificação de opções de Black–Scholes–Merton (1973) transformaram, passo a passo, as finanças em matemática computável.<!--/A:faq_a2--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q3-->Um iniciante pode aprender trading quantitativo? Que base é necessária?<!--/A:faq_q3--></h3><p><!--A:faq_a3-->Sim — mas você vai precisar de três bases: programação em Python (trabalho com dados), probabilidade e estatística (para entender volatilidade e risco) e fundamentos de finanças (retornos, portfólios, derivativos). O roteiro de quatro semanas deste site segue exatamente essa ordem: primeiro calcule retornos, depois risco e portfólios, em seguida sua primeira estratégia de médias móveis e, por fim, a validação fora da amostra.<!--/A:faq_a3--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q4-->Trading quantitativo sempre dá lucro?<!--/A:faq_q4--></h3><p><!--A:faq_a4-->Não. Qualquer estratégia pode dar prejuízo, e backtests passados não preveem o desempenho futuro. O verdadeiro valor do quant é tornar o risco explícito: drawdown máximo, custos de transação, sobreajuste e falha fora da amostra importam mais do que o retorno médio. As “quatro barreiras antes do backtest” desta página — sem antecipação, custos reais, reserva fora da amostra, cenários extremos — são exatamente onde os iniciantes mais se machucam.<!--/A:faq_a4--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q5-->O que é a teoria de portfólio de média–variância?<!--/A:faq_q5--></h3><p><!--A:faq_a5-->O arcabouço de Harry Markowitz, de 1952: o investidor não deve olhar apenas o retorno esperado de um ativo isolado, mas as covariâncias entre os ativos, usando a diversificação para reduzir o risco total do portfólio. Transformou o ditado “não coloque todos os ovos na mesma cesta” em um problema de otimização computável — o início da moderna teoria de portfólio.<!--/A:faq_a5--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q6-->Quais são os erros mais comuns no backtest?<!--/A:faq_q6--></h3><p><!--A:faq_a6-->Três: ① viés de antecipação — usar dados que ainda não existiam no momento da decisão; ② sobreajuste — parâmetros que só funcionam nos dados históricos; ③ ignorar custos — corretagem e slippage corroem os lucros de estratégias de alto giro. As correções: defasar os sinais em um período, deduzir os custos reais e reservar uma janela fora da amostra apenas para a checagem final.<!--/A:faq_a6--></p></article>
         </div>
       </div>
     </section>
@@ -602,7 +603,7 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
 
   <footer>
     <div class="wrap footer-inner">
-      <span>O primeiro princípio da pesquisa quantitativa: defina o risco antes de discutir os retornos. Última atualização: 2026-09-28.</span>
+      <span><!--A:footer_note-->O primeiro princípio da pesquisa quantitativa: defina o risco antes de discutir os retornos. Última atualização: 2026-09-28.<!--/A:footer_note--></span>
       <a href="#history">Voltar à linha do tempo ↑</a>
     </div>
   </footer>

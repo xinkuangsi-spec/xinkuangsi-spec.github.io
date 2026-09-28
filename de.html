@@ -324,6 +324,7 @@
       <span class="nav-mark">QF / 1900—NOW</span>
       <div class="nav-links">
         <a href="#history">Geschichte</a>
+      <a href="/admin.html" rel="nofollow">管理</a>
         <a href="#concepts">Konzepte</a>
         <a href="#lab">Labor</a>
         <a href="#strategy">Strategie</a>
@@ -345,8 +346,8 @@
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow">Eine Geschichte der Märkte, erzählt anhand von Daten</span>
-          <h1>Von Papierformeln<br>zu Mikrosekunden-Entscheidungen</h1>
-          <p class="hero-copy">Quantitative Finanzen sind keine Magie zur Vorhersage der Kurse von morgen. Sie sind eine Arbeitsmethode: Annahmen klar aufschreiben, Risiken quantifizieren und alles an Daten testen.</p>
+          <h1><!--A:hero_title-->Von Papierformeln<br>zu Mikrosekunden-Entscheidungen<!--/A:hero_title--></h1>
+          <p class="hero-copy"><!--A:hero_sub-->Quantitative Finanzen sind keine Magie zur Vorhersage der Kurse von morgen. Sie sind eine Arbeitsmethode: Annahmen klar aufschreiben, Risiken quantifizieren und alles an Daten testen.<!--/A:hero_sub--></p>
           <div class="hero-actions">
             <a class="button primary" href="#history">Zeitleiste starten</a>
             <a class="button" href="#lab">Zum Labor</a>
@@ -573,12 +574,12 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
           <div><h2>Quant-Handel: sechs Fragen, die Anfänger am häufigsten stellen</h2><p class="section-intro">Jede Antwort beginnt mit einem Satz Fazit, dann folgen die wichtigsten Details – schnell zu überfliegen, leicht zu zitieren.</p></div>
         </div>
         <div class="faq">
-          <article class="faq-item"><h3>Was ist quantitativer Handel?</h3><p>Quantitativer Handel nutzt mathematische Modelle und Computerprogramme zur Unterstützung von Anlageentscheidungen. Er verwandelt „was kaufen, wann und wie viel“ in explizite Regeln und testet sie an historischen Daten. Anders als diskretionäres Trading liegt seine Stärke in Disziplin, Wiederholbarkeit und messbarem Risiko – nicht in Magie zur Kursvorhersage.</p></article>
-          <article class="faq-item"><h3>Wo liegen die Ursprünge der quantitativen Finanzen?</h3><p>Als weithin anerkannter Ausgangspunkt gilt Louis Bacheliers Doktorarbeit <i>Théorie de la spéculation</i> aus dem Jahr 1900 – die erste Arbeit, die die Optionsbewertung mit stochastischen Prozessen untersuchte. Markowitz’ Portfoliotheorie (1952) und das Black–Scholes–Merton-Modell zur Optionsbewertung (1973) verwandelten die Finanzwelt danach Schritt für Schritt in berechenbare Mathematik.</p></article>
-          <article class="faq-item"><h3>Kann ein kompletter Anfänger quantitativen Handel lernen? Welches Vorwissen ist nötig?</h3><p>Ja – doch du brauchst drei Grundlagen: Python-Programmierung (Datenarbeit), Wahrscheinlichkeitsrechnung und Statistik (um Volatilität und Risiko zu verstehen) sowie Finanzgrundlagen (Renditen, Portfolios, Derivate). Der vierwöchige Fahrplan dieser Seite folgt genau dieser Reihenfolge: erst Renditen berechnen, dann Risiko und Portfolios, dann deine erste Gleitende-Durchschnitte-Strategie und schließlich die Out-of-Sample-Validierung.</p></article>
-          <article class="faq-item"><h3>Verdient man mit quantitativem Handel immer Geld?</h3><p>Nein. Jede Strategie kann Geld verlieren, und vergangene Backtests sagen nichts über die zukünftige Performance aus. Der wahre Wert von Quant liegt darin, Risiken explizit zu machen: Maximaler Drawdown, Transaktionskosten, Overfitting und Out-of-Sample-Versagen sind wichtiger als die Durchschnittsrendite. Die „vier Hürden vor dem Backtesting“ auf dieser Seite – kein Look-ahead, reale Kosten, Out-of-Sample-Reserve, Extremszenarien – sind genau die Stellen, an denen Anfänger am häufigsten scheitern.</p></article>
-          <article class="faq-item"><h3>Was ist die Mean-Variance-Portfoliotheorie?</h3><p>Harry Markowitz’ Framework von 1952: Anleger sollten nicht nur die erwartete Rendite eines einzelnen Assets isoliert betrachten, sondern die Kovarianzen zwischen Anlagen – und durch Diversifikation das Gesamtportfoliorisiko senken. Es verwandelte „Lege nicht alle Eier in einen Korb“ in ein berechenbares Optimierungsproblem – den Beginn der modernen Portfoliotheorie.</p></article>
-          <article class="faq-item"><h3>Was sind die häufigsten Backtesting-Fehler?</h3><p>Drei: ① Look-ahead-Bias – Daten verwendet, die zum Entscheidungszeitpunkt noch nicht existierten; ② Overfitting – Parameter, die nur auf historischen Daten funktionieren; ③ ignorierte Kosten – Kommissionen und Slippage fressen die Gewinne von Strategien mit hohem Umschlag auf. Die Gegenmittel: Signale um eine Periode verzögern, reale Kosten abziehen und ein Out-of-Sample-Fenster ausschließlich für die finale Prüfung reservieren.</p></article>
+          <article class="faq-item"><h3><!--A:faq_q1-->Was ist quantitativer Handel?<!--/A:faq_q1--></h3><p><!--A:faq_a1-->Quantitativer Handel nutzt mathematische Modelle und Computerprogramme zur Unterstützung von Anlageentscheidungen. Er verwandelt „was kaufen, wann und wie viel“ in explizite Regeln und testet sie an historischen Daten. Anders als diskretionäres Trading liegt seine Stärke in Disziplin, Wiederholbarkeit und messbarem Risiko – nicht in Magie zur Kursvorhersage.<!--/A:faq_a1--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q2-->Wo liegen die Ursprünge der quantitativen Finanzen?<!--/A:faq_q2--></h3><p><!--A:faq_a2-->Als weithin anerkannter Ausgangspunkt gilt Louis Bacheliers Doktorarbeit <i>Théorie de la spéculation</i> aus dem Jahr 1900 – die erste Arbeit, die die Optionsbewertung mit stochastischen Prozessen untersuchte. Markowitz’ Portfoliotheorie (1952) und das Black–Scholes–Merton-Modell zur Optionsbewertung (1973) verwandelten die Finanzwelt danach Schritt für Schritt in berechenbare Mathematik.<!--/A:faq_a2--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q3-->Kann ein kompletter Anfänger quantitativen Handel lernen? Welches Vorwissen ist nötig?<!--/A:faq_q3--></h3><p><!--A:faq_a3-->Ja – doch du brauchst drei Grundlagen: Python-Programmierung (Datenarbeit), Wahrscheinlichkeitsrechnung und Statistik (um Volatilität und Risiko zu verstehen) sowie Finanzgrundlagen (Renditen, Portfolios, Derivate). Der vierwöchige Fahrplan dieser Seite folgt genau dieser Reihenfolge: erst Renditen berechnen, dann Risiko und Portfolios, dann deine erste Gleitende-Durchschnitte-Strategie und schließlich die Out-of-Sample-Validierung.<!--/A:faq_a3--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q4-->Verdient man mit quantitativem Handel immer Geld?<!--/A:faq_q4--></h3><p><!--A:faq_a4-->Nein. Jede Strategie kann Geld verlieren, und vergangene Backtests sagen nichts über die zukünftige Performance aus. Der wahre Wert von Quant liegt darin, Risiken explizit zu machen: Maximaler Drawdown, Transaktionskosten, Overfitting und Out-of-Sample-Versagen sind wichtiger als die Durchschnittsrendite. Die „vier Hürden vor dem Backtesting“ auf dieser Seite – kein Look-ahead, reale Kosten, Out-of-Sample-Reserve, Extremszenarien – sind genau die Stellen, an denen Anfänger am häufigsten scheitern.<!--/A:faq_a4--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q5-->Was ist die Mean-Variance-Portfoliotheorie?<!--/A:faq_q5--></h3><p><!--A:faq_a5-->Harry Markowitz’ Framework von 1952: Anleger sollten nicht nur die erwartete Rendite eines einzelnen Assets isoliert betrachten, sondern die Kovarianzen zwischen Anlagen – und durch Diversifikation das Gesamtportfoliorisiko senken. Es verwandelte „Lege nicht alle Eier in einen Korb“ in ein berechenbares Optimierungsproblem – den Beginn der modernen Portfoliotheorie.<!--/A:faq_a5--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q6-->Was sind die häufigsten Backtesting-Fehler?<!--/A:faq_q6--></h3><p><!--A:faq_a6-->Drei: ① Look-ahead-Bias – Daten verwendet, die zum Entscheidungszeitpunkt noch nicht existierten; ② Overfitting – Parameter, die nur auf historischen Daten funktionieren; ③ ignorierte Kosten – Kommissionen und Slippage fressen die Gewinne von Strategien mit hohem Umschlag auf. Die Gegenmittel: Signale um eine Periode verzögern, reale Kosten abziehen und ein Out-of-Sample-Fenster ausschließlich für die finale Prüfung reservieren.<!--/A:faq_a6--></p></article>
         </div>
       </div>
     </section>
@@ -602,7 +603,7 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
 
   <footer>
     <div class="wrap footer-inner">
-      <span>Das erste Prinzip quantitativer Forschung: Definiere das Risiko, bevor du über Renditen sprichst. Zuletzt aktualisiert: 2026-09-28.</span>
+      <span><!--A:footer_note-->Das erste Prinzip quantitativer Forschung: Definiere das Risiko, bevor du über Renditen sprichst. Zuletzt aktualisiert: 2026-09-28.<!--/A:footer_note--></span>
       <a href="#history">Zurück zur Zeitleiste ↑</a>
     </div>
   </footer>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>网站管理后台</title>
+<style>
+  :root { --bg:#0e1116; --card:#171c24; --line:#2a3340; --text:#e8edf3; --muted:#9aa7b8; --accent:#4da3ff; --ok:#3ecf8e; --err:#ff6b6b; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }
+  .wrap { max-width:860px; margin:0 auto; padding:24px 16px 80px; }
+  h1 { font-size:24px; margin:8px 0 4px; }
+  .sub { color:var(--muted); font-size:14px; margin-bottom:24px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px; margin-bottom:20px; }
+  .card h2 { font-size:17px; margin:0 0 12px; }
+  .card h3 { font-size:15px; margin:20px 0 8px; color:var(--accent); }
+  label { display:block; font-size:13px; color:var(--muted); margin:14px 0 6px; }
+  input[type=text], input[type=password], textarea { width:100%; background:#0b0e13; border:1px solid var(--line); color:var(--text); border-radius:8px; padding:10px 12px; font-size:14px; font-family:inherit; }
+  textarea { min-height:76px; resize:vertical; }
+  textarea.tall { min-height:120px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  button { background:var(--accent); color:#04101f; border:0; border-radius:8px; padding:10px 20px; font-size:15px; font-weight:700; cursor:pointer; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  button.ghost { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  button.danger { background:transparent; color:var(--err); border:1px solid var(--err); }
+  .tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
+  .tabs button { background:transparent; color:var(--muted); border:1px solid var(--line); padding:8px 16px; font-size:14px; font-weight:400; }
+  .tabs button.active { background:var(--accent); color:#04101f; border-color:var(--accent); font-weight:700; }
+  .status { margin-top:12px; font-size:14px; min-height:22px; }
+  .status.ok { color:var(--ok); } .status.err { color:var(--err); } .status.busy { color:var(--muted); }
+  ol.steps { margin:8px 0; padding-left:22px; font-size:14px; color:var(--muted); }
+  ol.steps li { margin:6px 0; }
+  ol.steps code, p code { background:#0b0e13; border:1px solid var(--line); border-radius:4px; padding:1px 6px; font-size:13px; color:var(--accent); }
+  .faq-block { border:1px solid var(--line); border-radius:8px; padding:4px 14px 14px; margin-top:12px; }
+  .note { font-size:13px; color:var(--muted); background:#0b0e13; border:1px dashed var(--line); border-radius:8px; padding:10px 14px; margin-top:16px; }
+  .hidden { display:none; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>网站管理后台</h1>
+  <p class="sub">修改网站文字内容 → 点发布 → 约1分钟后网站自动更新。当前站点：<a href="/" target="_blank" rel="noopener">xinkuangsi-spec.github.io</a></p>
+
+  <div class="card" id="tokenCard">
+    <h2>第一步：连接 GitHub（只需做一次）</h2>
+    <ol class="steps">
+      <li>打开 <a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener">github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens</a>，点 <b>Generate new token</b>。</li>
+      <li>Token name 随便填（如 <code>site-admin</code>），Expiration 选 <code>90 days</code> 或更长。</li>
+      <li>Repository access 选 <b>Only select repositories</b>，只勾选 <code>xinkuangsi-spec.github.io</code>。</li>
+      <li>Permissions 里找到 <b>Contents</b>，设为 <b>Read and write</b>，其余保持默认，点 <b>Generate token</b>。</li>
+      <li>把生成的 <code>github_pat_...</code> 粘贴到下面，点"保存并连接"。<b>这个页面关掉后就看不到 token 了，请先复制好。</b></li>
+    </ol>
+    <label>GitHub Token（只保存在你这台设备的浏览器里，不会发给任何人）</label>
+    <input type="password" id="tokenInput" placeholder="github_pat_..." autocomplete="off">
+    <div class="row">
+      <button id="saveToken">保存并连接</button>
+      <button class="ghost" id="testToken">测试连接</button>
+      <button class="danger" id="clearToken">清除密钥</button>
+    </div>
+    <div class="status" id="tokenStatus"></div>
+  </div>
+
+  <div class="card hidden" id="editorCard">
+    <h2>第二步：编辑内容</h2>
+    <div class="tabs" id="langTabs"></div>
+    <div id="fields"></div>
+    <div class="row">
+      <button id="publishBtn">发布此语言版本</button>
+    </div>
+    <div class="status" id="pubStatus"></div>
+    <div class="note">
+      发布后 GitHub 会自动重新构建网站，约 1 分钟后生效（偶尔有几分钟缓存延迟）。<br>
+      管理页本身是公开网址，但没有你的 token 谁也改不了东西；token 只存在你自己的浏览器里。不要把 token 发给任何人。
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var OWNER = 'xinkuangsi-spec', REPO = 'xinkuangsi-spec.github.io';
+  var LANGS = [
+    { code: '中文', file: 'index.html', tab: '中文' },
+    { code: 'en',   file: 'en.html',    tab: 'EN' },
+    { code: 'fr',   file: 'fr.html',    tab: 'FR' },
+    { code: 'de',   file: 'de.html',    tab: 'DE' },
+    { code: 'pt',   file: 'pt.html',    tab: 'PT' },
+    { code: 'es',   file: 'es.html',    tab: 'ES' }
+  ];
+  var FIELDS = [
+    { key: 'hero_title',  label: '首页大标题', type: 'text' },
+    { key: 'hero_sub',    label: '首页副标题', type: 'textarea' }
+  ];
+  for (var i = 1; i <= 6; i++) {
+    FIELDS.push({ key: 'faq_q' + i, label: '常见问题 ' + i + '（问题）', type: 'text' });
+    FIELDS.push({ key: 'faq_a' + i, label: '常见问题 ' + i + '（回答）', type: 'textarea_tall' });
+  }
+  FIELDS.push({ key: 'footer_note', label: '页脚标语', type: 'text' });
+
+  var token = localStorage.getItem('site_admin_pat') || '';
+  var cur = 0, fileCache = {}; // fileCache[file] = {sha, raw}
+
+  var $ = function (id) { return document.getElementById(id); };
+  function setStatus(el, msg, cls) { el.textContent = msg; el.className = 'status ' + (cls || ''); }
+  function api(path, method, body) {
+    return fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+      method: method || 'GET',
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' },
+      body: body ? JSON.stringify(body) : undefined
+    }).then(function (r) {
+      if (!r.ok) return r.json().then(function (j) { throw new Error('GitHub 返回 ' + r.status + '：' + (j.message || '')); });
+      return r.json();
+    });
+  }
+  function b64encode(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function b64decode(b64) { return decodeURIComponent(escape(atob(b64.replace(/\n/g, '')))); }
+  function regions(raw) {
+    var out = {}, re = /<!--A:([a-z0-9_]+)-->([\s\S]*?)<!--\/A:\1-->/g, m;
+    while ((m = re.exec(raw))) out[m[1]] = m[2];
+    return out;
+  }
+  function applyRegions(raw, vals) {
+    return raw.replace(/<!--A:([a-z0-9_]+)-->([\s\S]*?)<!--\/A:\1-->/g, function (m, key) {
+      if (!(key in vals)) return m;
+      var v = vals[key];
+      if (key === 'hero_title') v = v.replace(/\n/g, '<br>');
+      return '<!--A:' + key + '-->' + v + '<!--/A:' + key + '-->';
+    });
+  }
+
+  function refreshTokenUI() {
+    $('tokenInput').value = token ? '••••••••（已保存）' : '';
+    if (token) {
+      $('editorCard').classList.remove('hidden');
+      buildTabs(); loadLang(0);
+    } else {
+      $('editorCard').classList.add('hidden');
+    }
+  }
+  function buildTabs() {
+    var box = $('langTabs'); box.innerHTML = '';
+    LANGS.forEach(function (L, i) {
+      var b = document.createElement('button');
+      b.textContent = L.tab; if (i === cur) b.className = 'active';
+      b.onclick = function () { loadLang(i); };
+      box.appendChild(b);
+    });
+  }
+  function loadLang(i) {
+    cur = i; buildTabs();
+    var L = LANGS[i];
+    setStatus($('pubStatus'), '正在读取 ' + L.file + ' …', 'busy');
+    $('fields').innerHTML = '';
+    $('publishBtn').disabled = true;
+    api(L.file).then(function (j) {
+      var raw = b64decode(j.content);
+      fileCache[L.file] = { sha: j.sha, raw: raw };
+      var vals = regions(raw), box = $('fields'); box.innerHTML = '';
+      FIELDS.forEach(function (f) {
+        var v = vals[f.key] || '';
+        if (f.key === 'hero_title') v = v.replace(/<br\s*\/?>/g, '\n');
+        var lab = document.createElement('label'); lab.textContent = f.label;
+        var inp = (f.type === 'text')
+          ? document.createElement('input') : document.createElement('textarea');
+        if (f.type !== 'text') { inp.type = 'text'; if (f.type === 'textarea_tall') inp.className = 'tall'; }
+        else inp.type = 'text';
+        inp.id = 'f_' + f.key; inp.value = v;
+        box.appendChild(lab); box.appendChild(inp);
+      });
+      $('publishBtn').disabled = false;
+      setStatus($('pubStatus'), '已载入 ' + L.tab + ' 版内容，修改后点"发布"。', 'ok');
+    }).catch(function (e) { setStatus($('pubStatus'), '读取失败：' + e.message, 'err'); });
+  }
+
+  $('saveToken').onclick = function () {
+    var v = $('tokenInput').value.trim();
+    if (!v || v.indexOf('•') === 0) { setStatus($('tokenStatus'), '请先粘贴新 token。', 'err'); return; }
+    token = v; localStorage.setItem('site_admin_pat', token);
+    setStatus($('tokenStatus'), '已保存，正在验证…', 'busy');
+    api('').then(function () {
+      setStatus($('tokenStatus'), '连接成功，可以开始编辑了。', 'ok'); refreshTokenUI();
+    }).catch(function (e) { setStatus($('tokenStatus'), '验证失败：' + e.message, 'err'); });
+  };
+  $('testToken').onclick = function () {
+    if (!token) { setStatus($('tokenStatus'), '还没有保存 token。', 'err'); return; }
+    setStatus($('tokenStatus'), '测试中…', 'busy');
+    api('').then(function () { setStatus($('tokenStatus'), '连接正常。', 'ok'); })
+           .catch(function (e) { setStatus($('tokenStatus'), '连接失败：' + e.message, 'err'); });
+  };
+  $('clearToken').onclick = function () {
+    token = ''; localStorage.removeItem('site_admin_pat');
+    setStatus($('tokenStatus'), '密钥已清除。', ''); refreshTokenUI();
+  };
+
+  $('publishBtn').onclick = function () {
+    var L = LANGS[cur], cache = fileCache[L.file];
+    if (!cache) return;
+    var vals = {};
+    FIELDS.forEach(function (f) { vals[f.key] = $('f_' + f.key).value; });
+    var updated = applyRegions(cache.raw, vals);
+    if (updated === cache.raw) { setStatus($('pubStatus'), '内容没有变化，无需发布。', ''); return; }
+    setStatus($('pubStatus'), '正在发布 ' + L.file + ' …', 'busy');
+    $('publishBtn').disabled = true;
+    api(L.file, 'PUT', {
+      message: 'Admin: update ' + L.file + ' content',
+      content: b64encode(updated),
+      sha: cache.sha
+    }).then(function (j) {
+      fileCache[L.file] = { sha: j.content.sha, raw: updated };
+      $('publishBtn').disabled = false;
+      setStatus($('pubStatus'), '发布成功！网站约 1 分钟后自动更新。', 'ok');
+    }).catch(function (e) {
+      $('publishBtn').disabled = false;
+      setStatus($('pubStatus'), '发布失败：' + e.message, 'err');
+    });
+  };
+
+  refreshTokenUI();
+})();
+</script>
+</body>
+</html>

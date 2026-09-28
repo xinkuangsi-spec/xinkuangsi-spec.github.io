@@ -324,6 +324,7 @@
       <span class="nav-mark">QF / 1900—NOW</span>
       <div class="nav-links">
         <a href="#history">Historia</a>
+      <a href="/admin.html" rel="nofollow">管理</a>
         <a href="#concepts">Conceptos</a>
         <a href="#lab">Laboratorio</a>
         <a href="#strategy">Estrategia</a>
@@ -345,8 +346,8 @@
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow">Una historia de los mercados, contada con datos</span>
-          <h1>De las fórmulas en papel<br>a las decisiones en microsegundos</h1>
-          <p class="hero-copy">Las finanzas cuantitativas no son magia para predecir los precios de mañana. Son un método de trabajo: escribe tus hipótesis, cuantifica el riesgo y contrasta todo con datos.</p>
+          <h1><!--A:hero_title-->De las fórmulas en papel<br>a las decisiones en microsegundos<!--/A:hero_title--></h1>
+          <p class="hero-copy"><!--A:hero_sub-->Las finanzas cuantitativas no son magia para predecir los precios de mañana. Son un método de trabajo: escribe tus hipótesis, cuantifica el riesgo y contrasta todo con datos.<!--/A:hero_sub--></p>
           <div class="hero-actions">
             <a class="button primary" href="#history">Empezar por la cronología</a>
             <a class="button" href="#lab">Ir al laboratorio</a>
@@ -573,12 +574,12 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
           <div><h2>Trading cuantitativo: las seis preguntas más frecuentes de los principiantes</h2><p class="section-intro">Cada respuesta empieza con una conclusión en una frase y luego los detalles clave: rápido de leer, fácil de citar.</p></div>
         </div>
         <div class="faq">
-          <article class="faq-item"><h3>¿Qué es el trading cuantitativo?</h3><p>El trading cuantitativo utiliza modelos matemáticos y programas informáticos para apoyar las decisiones de inversión. Convierte «qué comprar, cuándo y cuánto» en reglas explícitas y las contrasta con datos históricos. A diferencia del trading discrecional, su ventaja está en la disciplina, la repetibilidad y el riesgo medible, no en la magia de predecir precios.</p></article>
-          <article class="faq-item"><h3>¿Cuál es el origen de las finanzas cuantitativas?</h3><p>El punto de partida generalmente aceptado es la tesis doctoral de 1900 de Louis Bachelier, <i>Théorie de la spéculation</i>, el primer trabajo que estudió la valoración de opciones con procesos estocásticos. La teoría de carteras de Markowitz (1952) y el modelo de valoración de opciones de Black–Scholes–Merton (1973) convirtieron después las finanzas en matemáticas computables, paso a paso.</p></article>
-          <article class="faq-item"><h3>¿Puede un principiante total aprender trading cuantitativo? ¿Qué base se necesita?</h3><p>Sí, pero necesitarás tres bases: programación en Python (trabajo con datos), probabilidad y estadística (para entender la volatilidad y el riesgo) y fundamentos de finanzas (rendimientos, carteras, derivados). La ruta de cuatro semanas de este sitio sigue exactamente ese orden: primero calcula rendimientos, luego riesgo y carteras, después tu primera estrategia de medias móviles y por último la validación fuera de muestra.</p></article>
-          <article class="faq-item"><h3>¿El trading cuantitativo siempre gana dinero?</h3><p>No. Cualquier estrategia puede perder dinero y los backtests pasados no predicen el rendimiento futuro. El verdadero valor del quant es hacer explícito el riesgo: la caída máxima, los costes de transacción, el sobreajuste y el fallo fuera de muestra importan más que el rendimiento medio. Los «cuatro controles antes del backtesting» de esta página (sin anticipación, costes reales, reserva fuera de muestra, escenarios extremos) son justo donde más se lastiman los principiantes.</p></article>
-          <article class="faq-item"><h3>¿Qué es la teoría de carteras de media-varianza?</h3><p>El marco de 1952 de Harry Markowitz: los inversores no deberían mirar solo el rendimiento esperado de un activo de forma aislada, sino las covarianzas entre activos, usando la diversificación para reducir el riesgo total de la cartera. Convirtió «no pongas todos los huevos en la misma cesta» en un problema de optimización computable: el inicio de la teoría moderna de carteras.</p></article>
-          <article class="faq-item"><h3>¿Cuáles son los errores más comunes en el backtesting?</h3><p>Tres: ① sesgo de anticipación: usar datos que aún no existían en el momento de la decisión; ② sobreajuste: parámetros que solo funcionan con datos históricos; ③ ignorar los costes: las comisiones y el slippage devoran los beneficios de las estrategias de alta rotación. Las soluciones: retrasa las señales un periodo, descuenta los costes reales y reserva una ventana fuera de muestra solo para la comprobación final.</p></article>
+          <article class="faq-item"><h3><!--A:faq_q1-->¿Qué es el trading cuantitativo?<!--/A:faq_q1--></h3><p><!--A:faq_a1-->El trading cuantitativo utiliza modelos matemáticos y programas informáticos para apoyar las decisiones de inversión. Convierte «qué comprar, cuándo y cuánto» en reglas explícitas y las contrasta con datos históricos. A diferencia del trading discrecional, su ventaja está en la disciplina, la repetibilidad y el riesgo medible, no en la magia de predecir precios.<!--/A:faq_a1--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q2-->¿Cuál es el origen de las finanzas cuantitativas?<!--/A:faq_q2--></h3><p><!--A:faq_a2-->El punto de partida generalmente aceptado es la tesis doctoral de 1900 de Louis Bachelier, <i>Théorie de la spéculation</i>, el primer trabajo que estudió la valoración de opciones con procesos estocásticos. La teoría de carteras de Markowitz (1952) y el modelo de valoración de opciones de Black–Scholes–Merton (1973) convirtieron después las finanzas en matemáticas computables, paso a paso.<!--/A:faq_a2--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q3-->¿Puede un principiante total aprender trading cuantitativo? ¿Qué base se necesita?<!--/A:faq_q3--></h3><p><!--A:faq_a3-->Sí, pero necesitarás tres bases: programación en Python (trabajo con datos), probabilidad y estadística (para entender la volatilidad y el riesgo) y fundamentos de finanzas (rendimientos, carteras, derivados). La ruta de cuatro semanas de este sitio sigue exactamente ese orden: primero calcula rendimientos, luego riesgo y carteras, después tu primera estrategia de medias móviles y por último la validación fuera de muestra.<!--/A:faq_a3--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q4-->¿El trading cuantitativo siempre gana dinero?<!--/A:faq_q4--></h3><p><!--A:faq_a4-->No. Cualquier estrategia puede perder dinero y los backtests pasados no predicen el rendimiento futuro. El verdadero valor del quant es hacer explícito el riesgo: la caída máxima, los costes de transacción, el sobreajuste y el fallo fuera de muestra importan más que el rendimiento medio. Los «cuatro controles antes del backtesting» de esta página (sin anticipación, costes reales, reserva fuera de muestra, escenarios extremos) son justo donde más se lastiman los principiantes.<!--/A:faq_a4--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q5-->¿Qué es la teoría de carteras de media-varianza?<!--/A:faq_q5--></h3><p><!--A:faq_a5-->El marco de 1952 de Harry Markowitz: los inversores no deberían mirar solo el rendimiento esperado de un activo de forma aislada, sino las covarianzas entre activos, usando la diversificación para reducir el riesgo total de la cartera. Convirtió «no pongas todos los huevos en la misma cesta» en un problema de optimización computable: el inicio de la teoría moderna de carteras.<!--/A:faq_a5--></p></article>
+          <article class="faq-item"><h3><!--A:faq_q6-->¿Cuáles son los errores más comunes en el backtesting?<!--/A:faq_q6--></h3><p><!--A:faq_a6-->Tres: ① sesgo de anticipación: usar datos que aún no existían en el momento de la decisión; ② sobreajuste: parámetros que solo funcionan con datos históricos; ③ ignorar los costes: las comisiones y el slippage devoran los beneficios de las estrategias de alta rotación. Las soluciones: retrasa las señales un periodo, descuenta los costes reales y reserva una ventana fuera de muestra solo para la comprobación final.<!--/A:faq_a6--></p></article>
         </div>
       </div>
     </section>
@@ -602,7 +603,7 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
 
   <footer>
     <div class="wrap footer-inner">
-      <span>El primer principio de la investigación cuantitativa: define el riesgo antes de hablar de rendimientos. Última actualización: 2026-09-28.</span>
+      <span><!--A:footer_note-->El primer principio de la investigación cuantitativa: define el riesgo antes de hablar de rendimientos. Última actualización: 2026-09-28.<!--/A:footer_note--></span>
       <a href="#history">Volver a la cronología ↑</a>
     </div>
   </footer>
