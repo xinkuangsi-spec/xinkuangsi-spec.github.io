@@ -3,6 +3,7 @@
 > 一份中文的量化金融简史与新手入门教程：从1900年巴舍利耶的随机过程、1952年马科维茨组合理论、1973年Black-Scholes期权定价，到程序化交易、高频交易与机器学习。包含可交互的收益率/波动率计算器、均线策略Python示例代码、四周学习路线与新手常见问题解答。
 
 - 主页: https://xinkuangsi-spec.github.io/
+- 英文版主页 (English version): https://xinkuangsi-spec.github.io/en.html
 - 发展史时间线: https://xinkuangsi-spec.github.io/#history
 - 核心概念: https://xinkuangsi-spec.github.io/#concepts
 - 动手实验（收益率计算器）: https://xinkuangsi-spec.github.io/#lab

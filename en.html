@@ -1,31 +1,31 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
-  <meta name="description" content="量化交易发展史与新手入门教程：从1900年巴舍利耶的随机过程、马科维茨组合理论、Black-Scholes期权定价，到程序化交易、高频交易与机器学习。含收益率计算器、均线策略Python代码与四周学习路线。" />
-  <meta name="keywords" content="量化交易,量化投资,量化发展史,量化金融,程序化交易,高频交易,算法交易,均线策略,回测教程,马科维茨,Black-Scholes,quantitative finance,algorithmic trading" />
-  <meta name="author" content="量化发展史与教程" />
+  <meta name="description" content="A history of quantitative trading and beginner tutorials: from Bachelier's stochastic processes (1900), Markowitz portfolio theory, and Black-Scholes option pricing to programmatic trading, high-frequency trading, and machine learning. Includes a returns calculator, moving-average strategy Python code, and a four-week learning roadmap." />
+  <meta name="keywords" content="quantitative trading,quant trading,quantitative finance,history of quant,algorithmic trading,high-frequency trading,moving average strategy,backtesting tutorial,Markowitz,Black-Scholes,Sharpe ratio,quant tutorial" />
+  <meta name="author" content="A History of Quantitative Trading" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://xinkuangsi-spec.github.io/" />
+  <link rel="canonical" href="https://xinkuangsi-spec.github.io/en.html" />
   <link rel="alternate" hreflang="zh-CN" href="https://xinkuangsi-spec.github.io/" />
   <link rel="alternate" hreflang="en" href="https://xinkuangsi-spec.github.io/en.html" />
   <meta name="theme-color" content="#f4f2ec" />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="zh_CN" />
-  <meta property="og:site_name" content="量化发展史与教程" />
-  <meta property="og:title" content="量化交易发展史与入门教程：从巴舍利耶到机器学习" />
-  <meta property="og:description" content="一份从随机过程到机器学习的量化金融简史，附可直接动手的收益率计算器、均线策略代码与四周入门路线。" />
-  <meta property="og:url" content="https://xinkuangsi-spec.github.io/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="A History of Quantitative Trading" />
+  <meta property="og:title" content="A History of Quantitative Trading: From Bachelier to Machine Learning | Tutorials" />
+  <meta property="og:description" content="A history of quantitative finance from stochastic processes to machine learning, with a hands-on returns calculator, moving-average strategy code, and a four-week starter roadmap." />
+  <meta property="og:url" content="https://xinkuangsi-spec.github.io/en.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="量化交易发展史与入门教程：从巴舍利耶到机器学习" />
-  <meta name="twitter:description" content="一份从随机过程到机器学习的量化金融简史，附可直接动手的收益率计算器、均线策略代码与四周入门路线。" />
+  <meta name="twitter:title" content="A History of Quantitative Trading: From Bachelier to Machine Learning | Tutorials" />
+  <meta name="twitter:description" content="A history of quantitative finance from stochastic processes to machine learning, with a hands-on returns calculator, moving-average strategy code, and a four-week starter roadmap." />
   <link rel="icon" href="data:," />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
-  <title>量化交易发展史与入门教程：从巴舍利耶到机器学习</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <title>A History of Quantitative Trading: From Bachelier to Machine Learning | Tutorials</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -66,7 +66,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font-family: "Noto Sans SC", sans-serif;
+      font-family: "Inter", "Noto Sans SC", sans-serif;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
@@ -244,49 +244,67 @@
       *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
-  <script type="application/ld+json">
+    <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebSite",
-        "name": "量化发展史与教程",
-        "url": "https://xinkuangsi-spec.github.io/",
-        "inLanguage": "zh-CN",
-        "description": "中文量化金融简史与新手入门教程：时间线、核心概念、收益率计算器、均线策略代码与四周学习路线。"
+        "name": "A History of Quantitative Trading",
+        "url": "https://xinkuangsi-spec.github.io/en.html",
+        "inLanguage": "en",
+        "description": "A history of quantitative finance in English, with beginner tutorials: timeline, core concepts, a returns calculator, moving-average strategy code, and a four-week learning roadmap."
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "什么是量化交易？",
-            "acceptedAnswer": { "@type": "Answer", "text": "量化交易是用数学模型和计算机程序辅助投资决策的方法：把“买什么、何时买、买多少”写成明确规则，再用历史数据检验。它的优势在于纪律性、可重复和可度量风险，而不是预测涨跌的魔法。" }
+            "name": "What is quantitative trading?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quantitative trading uses mathematical models and computer programs to support investment decisions: turning “what to buy, when, and how much” into explicit rules, then testing them on historical data. Its edge lies in discipline, repeatability, and measurable risk — not magic that predicts prices."
+            }
           },
           {
             "@type": "Question",
-            "name": "量化金融的起点是什么？",
-            "acceptedAnswer": { "@type": "Answer", "text": "公认的起点是1900年路易·巴舍利耶的博士论文《投机理论》，他首次用随机过程研究期权定价。此后1952年马科维茨的组合理论、1973年Black-Scholes-Merton期权定价模型，逐步把金融问题变成可计算的数学问题。" }
+            "name": "Where did quantitative finance begin?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The widely accepted starting point is Louis Bachelier’s 1900 doctoral thesis, Théorie de la spéculation, the first work to study option pricing with stochastic processes. Markowitz’s portfolio theory (1952) and the Black–Scholes–Merton option pricing model (1973) then turned finance into computable mathematics, step by step."
+            }
           },
           {
             "@type": "Question",
-            "name": "零基础可以学量化交易吗？需要什么基础？",
-            "acceptedAnswer": { "@type": "Answer", "text": "可以，但需要补三块基础：Python编程、概率统计、金融基础知识。本站的四周路线按此顺序设计：先算收益率，再学风险与组合，然后写第一个均线策略，最后做样本外验证。" }
+            "name": "Can a complete beginner learn quantitative trading? What background is needed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — but you’ll need three foundations: Python programming, probability and statistics, and finance basics. This site’s four-week roadmap follows exactly that order: compute returns first, then risk and portfolios, then your first moving-average strategy, and finally out-of-sample validation."
+            }
           },
           {
             "@type": "Question",
-            "name": "量化交易一定赚钱吗？",
-            "acceptedAnswer": { "@type": "Answer", "text": "不一定。任何策略都可能亏损，历史回测不代表未来表现。量化真正的价值是把风险算清楚：最大回撤、交易成本、过拟合和样本外失效，都比平均收益更重要。" }
+            "name": "Does quantitative trading always make money?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Any strategy can lose money, and past backtests don’t predict future performance. The real value of quant is making risk explicit: max drawdown, transaction costs, overfitting, and out-of-sample failure all matter more than average return."
+            }
           },
           {
             "@type": "Question",
-            "name": "什么是均值-方差组合理论？",
-            "acceptedAnswer": { "@type": "Answer", "text": "1952年哈里·马科维茨提出的框架：投资者不应只看单只资产的预期收益，而应看资产之间的协方差，用分散化降低组合整体风险。它把“不要把鸡蛋放在一个篮子里”变成了可计算的优化问题。" }
+            "name": "What is mean–variance portfolio theory?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Harry Markowitz’s 1952 framework: investors shouldn’t look only at an asset’s expected return in isolation, but at covariances between assets, using diversification to lower total portfolio risk. It turned “don’t put all your eggs in one basket” into a computable optimization problem."
+            }
           },
           {
             "@type": "Question",
-            "name": "回测时最常见的错误是什么？",
-            "acceptedAnswer": { "@type": "Answer", "text": "三个：未来函数（用了当时还不存在的数据）、过拟合（参数只在历史数据上有效）、忽略成本（手续费和滑点吞掉利润）。对策是信号滞后一期执行、扣除真实成本、留出样本外区间只做最终检查。" }
+            "name": "What are the most common backtesting mistakes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Three: look-ahead bias (using data that didn’t exist yet at decision time), overfitting (parameters that only work on historical data), and ignoring costs (commissions and slippage devour profits). The fixes: lag signals by one period, deduct real costs, and hold out an out-of-sample window for the final check only."
+            }
           }
         ]
       }
@@ -296,18 +314,18 @@
 </head>
 <body>
   <div class="progress" id="progress" aria-hidden="true"></div>
-  <nav class="nav" aria-label="页面导航">
+  <nav class="nav" aria-label="Page navigation">
     <div class="wrap nav-inner">
       <span class="nav-mark">QF / 1900—NOW</span>
       <div class="nav-links">
-        <a href="#history">发展史</a>
-        <a href="#concepts">核心概念</a>
-        <a href="#lab">动手实验</a>
-        <a href="#strategy">策略雏形</a>
-        <a href="#monetization">变现说明</a>
-        <a href="#faq">常见问题</a>
-        <a href="#sources">资料来源</a>
-        <a href="/en.html" lang="en">EN</a>
+        <a href="#history">History</a>
+        <a href="#concepts">Concepts</a>
+        <a href="#lab">Lab</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#monetization">Monetization</a>
+        <a href="#faq">FAQ</a>
+        <a href="#sources">Sources</a>
+        <a href="./" lang="zh-CN">中文</a>
       </div>
     </div>
   </nav>
@@ -316,15 +334,15 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow">一部用数据理解市场的历史</span>
-          <h1>从纸笔公式<br>到微秒决策</h1>
-          <p class="hero-copy">量化金融不是“预测明天涨跌”的魔法。它是一套把假设写清楚、把风险算出来、再用数据检验的工作方法。</p>
+          <span class="eyebrow">A history of markets, told through data</span>
+          <h1>From Paper Formulas<br>to Microsecond Decisions</h1>
+          <p class="hero-copy">Quantitative finance isn’t magic that predicts tomorrow’s prices. It’s a working method: write your assumptions down, quantify the risk, and test everything against data.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#history">沿时间线开始</a>
-            <a class="button" href="#lab">直接做实验</a>
+            <a class="button primary" href="#history">Start the timeline</a>
+            <a class="button" href="#lab">Jump to the lab</a>
           </div>
         </div>
-        <aside class="terminal" aria-label="量化研究示意图">
+        <aside class="terminal" aria-label="Quantitative research illustration">
           <div class="terminal-top"><span>RESEARCH.LOG</span><span>EDUCATIONAL</span></div>
           <div class="terminal-chart" aria-hidden="true">
             <svg viewBox="0 0 420 150" preserveAspectRatio="none">
@@ -342,9 +360,9 @@
       </div>
     </header>
 
-    <div class="ad-slot" aria-label="广告">
+    <div class="ad-slot" aria-label="Advertisement">
       <div class="wrap">
-        <span class="ad-label">广告 ADVERTISEMENT</span>
+        <span class="ad-label">ADVERTISEMENT</span>
         <script async="async" data-cfasync="false" src="https://pl31551070.profitableratecpmnetwork.com/aad81504f23a067241190bf89847b48d/invoke.js"></script>
         <div id="container-aad81504f23a067241190bf89847b48d"></div>
       </div>
@@ -355,40 +373,40 @@
         <div class="section-head">
           <div class="section-index">01 / HISTORY</div>
           <div>
-            <h2>六个转折点，勾勒一百多年的量化进化</h2>
-            <p class="section-intro">从随机过程、组合选择，到程序化交易与机器学习：工具不断变化，但核心问题始终是“收益从哪里来，风险如何承担”。</p>
+            <h2>Six turning points across a century of quant</h2>
+            <p class="section-intro">From stochastic processes and portfolio selection to programmatic trading and machine learning: the tools keep changing, but the core question stays the same — where do returns come from, and who bears the risk?</p>
           </div>
         </div>
-        <div class="filters" role="group" aria-label="筛选历史事件">
-          <button class="filter active" data-filter="all">全部</button>
-          <button class="filter" data-filter="theory">理论</button>
-          <button class="filter" data-filter="compute">计算</button>
-          <button class="filter" data-filter="market">市场</button>
+        <div class="filters" role="group" aria-label="Filter timeline events">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="theory">Theory</button>
+          <button class="filter" data-filter="compute">Computation</button>
+          <button class="filter" data-filter="market">Markets</button>
         </div>
         <div class="timeline">
           <article class="era" data-category="theory">
             <div class="year">1900</div>
-            <div><h3>巴舍利耶把随机运动带入金融</h3><p>路易·巴舍利耶在《投机理论》中用随机过程研究期权定价。它常被视为数学金融的起点。</p><span class="tag">随机过程</span></div>
+            <div><h3>Bachelier brings random motion to finance</h3><p>In his <i>Théorie de la spéculation</i>, Louis Bachelier used stochastic processes to study option pricing. It is widely regarded as the starting point of mathematical finance.</p><span class="tag">Stochastic processes</span></div>
           </article>
           <article class="era" data-category="theory">
             <div class="year">1952</div>
-            <div><h3>马科维茨重写“不要把鸡蛋放在一个篮子里”</h3><p>均值—方差框架把投资从挑选单只证券，推进到分析资产之间的协方差与整体组合风险。</p><span class="tag">组合理论</span></div>
+            <div><h3>Markowitz rewrites “don’t put all your eggs in one basket”</h3><p>The mean–variance framework moved investing from picking individual securities to analyzing covariances between assets and total portfolio risk.</p><span class="tag">Portfolio theory</span></div>
           </article>
           <article class="era" data-category="theory market">
             <div class="year">1973</div>
-            <div><h3>Black–Scholes–Merton 连接定价与对冲</h3><p>连续时间模型与动态复制给出欧式期权定价方法，也推动衍生品风险管理走向系统化。</p><span class="tag">衍生品定价</span></div>
+            <div><h3>Black–Scholes–Merton links pricing and hedging</h3><p>Continuous-time models and dynamic replication produced a method for pricing European options — and pushed derivatives risk management toward systematization.</p><span class="tag">Derivatives pricing</span></div>
           </article>
           <article class="era" data-category="compute market">
             <div class="year">1980s</div>
-            <div><h3>计算机走上交易台</h3><p>电子化市场、指数套利与程序化交易扩张。研究速度、执行质量和交易成本开始与模型本身同等重要。</p><span class="tag">程序化交易</span></div>
+            <div><h3>Computers reach the trading desk</h3><p>Electronic markets, index arbitrage, and programmatic trading expanded. Research speed, execution quality, and transaction costs became as important as the models themselves.</p><span class="tag">Programmatic trading</span></div>
           </article>
           <article class="era" data-category="compute market">
             <div class="year">2000s</div>
-            <div><h3>数据与速度成为基础设施</h3><p>更细粒度行情、低延迟系统与自动化执行普及；量化从机构的专用工具逐步扩散到更广泛的市场参与者。</p><span class="tag">高频 · 数据工程</span></div>
+            <div><h3>Data and speed become infrastructure</h3><p>Finer-grained quotes, low-latency systems, and automated execution went mainstream; quant spread from an institutional specialty to a much wider set of market participants.</p><span class="tag">High frequency · Data engineering</span></div>
           </article>
           <article class="era" data-category="compute theory">
             <div class="year">2010s—</div>
-            <div><h3>机器学习加入工具箱</h3><p>非线性模型、另类数据与自然语言处理扩大了信号空间，同时也让过拟合、可解释性和数据治理更关键。</p><span class="tag">机器学习</span></div>
+            <div><h3>Machine learning joins the toolkit</h3><p>Nonlinear models, alternative data, and natural language processing expanded the signal space — while making overfitting, interpretability, and data governance more critical than ever.</p><span class="tag">Machine learning</span></div>
           </article>
         </div>
       </div>
@@ -398,12 +416,12 @@
       <div class="wrap">
         <div class="section-head">
           <div class="section-index">02 / MINDSET</div>
-          <div><h2>先建立研究习惯，再寻找“神奇策略”</h2><p class="section-intro">可靠的量化流程不从指标开始，而从可证伪的假设、严格的数据边界与可承受的风险开始。</p></div>
+          <div><h2>Build research habits before hunting for a “magic strategy”</h2><p class="section-intro">A reliable quant process doesn’t start with indicators. It starts with falsifiable hypotheses, strict data boundaries, and risks you can afford.</p></div>
         </div>
         <div class="principles">
-          <article class="principle"><span class="num">A / 01</span><h3>收益是序列，不是单个数字</h3><p>同样的总收益，可能来自平稳积累，也可能来自一次幸运跳涨。先看路径，再看终点。</p></article>
-          <article class="principle"><span class="num">A / 02</span><h3>样本外表现才是考场</h3><p>调参用的数据不能再用来证明策略有效。训练期、验证期和测试期要按时间严格分开。</p></article>
-          <article class="principle"><span class="num">A / 03</span><h3>风险管理不是补丁</h3><p>仓位、最大回撤、流动性与交易成本都应进入策略设计，而不是亏损后才补上的规则。</p></article>
+          <article class="principle"><span class="num">A / 01</span><h3>Returns are a sequence, not a single number</h3><p>The same total return can come from steady compounding or one lucky jump. Look at the path before the destination.</p></article>
+          <article class="principle"><span class="num">A / 02</span><h3>Out-of-sample performance is the real exam</h3><p>Data used for tuning can’t also prove a strategy works. Train, validation, and test periods must be strictly separated in time.</p></article>
+          <article class="principle"><span class="num">A / 03</span><h3>Risk management is not a patch</h3><p>Position sizing, max drawdown, liquidity, and transaction costs belong in the strategy design — not as rules bolted on after losses.</p></article>
         </div>
       </div>
     </section>
@@ -412,36 +430,36 @@
       <div class="wrap">
         <div class="section-head">
           <div class="section-index">03 / LAB</div>
-          <div><h2>实验一：把价格变成可比较的收益率</h2><p class="section-intro">输入一段按时间排序的价格。计算器会得到简单收益率、年化波动率与零无风险利率假设下的示意夏普比率。</p></div>
+          <div><h2>Lab 1: Turn prices into comparable returns</h2><p class="section-intro">Enter a time-ordered series of prices. The calculator computes simple returns, annualized volatility, and an illustrative Sharpe ratio assuming a zero risk-free rate.</p></div>
         </div>
         <div class="lab">
           <article class="lesson">
-            <span class="lesson-step">概念 / 约 5 分钟</span>
-            <h3>为什么不用价格直接比较？</h3>
-            <p>价格尺度不同：从 10 到 11 与从 100 到 101 的“涨 1 元”含义完全不同。收益率将变化标准化。</p>
-            <div class="formula">简单收益率 rₜ = (Pₜ − Pₜ₋₁) / Pₜ₋₁</div>
+            <span class="lesson-step">Concepts / about 5 minutes</span>
+            <h3>Why not compare prices directly?</h3>
+            <p>Price scales differ: a $1 move from 10 to 11 means something completely different from 100 to 101. Returns standardize the change.</p>
+            <div class="formula">Simple return rₜ = (Pₜ − Pₜ₋₁) / Pₜ₋₁</div>
             <ol>
-              <li>检查价格是否按时间排序。</li>
-              <li>每个价格与前一项比较。</li>
-              <li>用收益率均值描述中心，用标准差描述波动。</li>
+              <li>Check that prices are sorted in time order.</li>
+              <li>Compare each price with the previous one.</li>
+              <li>Use the mean of returns for the center and the standard deviation for dispersion.</li>
             </ol>
           </article>
           <section class="calculator" aria-labelledby="calcTitle">
-            <span class="lesson-step">互动计算器 / 教学样例</span>
-            <h3 id="calcTitle">收益与风险速算</h3>
-            <p>可替换为你自己的收盘价，至少输入 3 个正数。</p>
-            <label for="prices">价格序列（逗号分隔）</label>
+            <span class="lesson-step">Interactive calculator / teaching example</span>
+            <h3 id="calcTitle">Returns &amp; risk, quick math</h3>
+            <p>Replace with your own closing prices — enter at least 3 positive numbers.</p>
+            <label for="prices">Price series (comma-separated)</label>
             <div class="input-row">
               <input id="prices" value="100, 101, 99, 103, 105, 104, 108, 110" inputmode="decimal" aria-describedby="calcMessage" />
-              <button class="calc-btn" id="calculate">重新计算</button>
+              <button class="calc-btn" id="calculate">Recalculate</button>
             </div>
             <div class="message" id="calcMessage" aria-live="polite"></div>
             <div class="metrics" aria-live="polite">
-              <div class="metric"><span>累计收益</span><strong id="totalReturn">—</strong></div>
-              <div class="metric"><span>年化波动</span><strong id="volatility">—</strong></div>
-              <div class="metric"><span>示意夏普</span><strong id="sharpe">—</strong></div>
+              <div class="metric"><span>Total return</span><strong id="totalReturn">—</strong></div>
+              <div class="metric"><span>Annualized vol</span><strong id="volatility">—</strong></div>
+              <div class="metric"><span>Indicative Sharpe</span><strong id="sharpe">—</strong></div>
             </div>
-            <svg id="miniChart" viewBox="0 0 560 130" role="img" aria-label="输入价格序列的折线图"></svg>
+            <svg id="miniChart" viewBox="0 0 560 130" role="img" aria-label="Line chart of the input price series"></svg>
           </section>
         </div>
       </div>
@@ -451,17 +469,17 @@
       <div class="wrap">
         <div class="section-head">
           <div class="section-index">04 / STARTER</div>
-          <div><h2>实验二：写出一个最小均线规则</h2><p class="section-intro">短均线上穿长均线时持有，反之空仓。它不是盈利承诺，而是学习“信号—仓位—收益—成本”链条的清晰起点。</p></div>
+          <div><h2>Lab 2: Write a minimal moving-average rule</h2><p class="section-intro">Hold when the fast average crosses above the slow average; stay flat otherwise. This isn’t a promise of profit — it’s a clean starting point for learning the signal → position → return → cost chain.</p></div>
         </div>
         <div class="strategy-grid">
           <article class="code-card">
             <span class="code-title">PYTHON / PANDAS</span>
-            <button class="copy" id="copyCode">复制代码</button>
-            <pre id="code"><span class="cm"># df 需要包含按时间升序排列的 close 列</span>
+            <button class="copy" id="copyCode">Copy code</button>
+            <pre id="code"><span class="cm"># df must contain a close column sorted in ascending time order</span>
 df[<span class="fn">"fast"</span>] = df[<span class="fn">"close"</span>].rolling(<span class="fn">20</span>).mean()
 df[<span class="fn">"slow"</span>] = df[<span class="fn">"close"</span>].rolling(<span class="fn">60</span>).mean()
 
-<span class="cm"># 当天收盘产生信号，下一期才执行，避免未来函数</span>
+<span class="cm"># Signals formed at the close are executed from the next period — no look-ahead</span>
 df[<span class="fn">"signal"</span>] = (df[<span class="fn">"fast"</span>] &gt; df[<span class="fn">"slow"</span>]).astype(int)
 df[<span class="fn">"position"</span>] = df[<span class="fn">"signal"</span>].shift(<span class="fn">1</span>).fillna(<span class="fn">0</span>)
 
@@ -471,11 +489,11 @@ cost = <span class="fn">0.0005</span>
 df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</span>] * df[<span class="fn">"ret"</span>] - cost * df[<span class="fn">"turnover"</span>]</pre>
           </article>
           <aside class="rules">
-            <h3>回测前的四道闸</h3>
-            <div class="rule"><b>01</b><p><strong>消除未来函数</strong><br>当天收盘后得到的信号，最早从下一交易期计入。</p></div>
-            <div class="rule"><b>02</b><p><strong>扣除真实成本</strong><br>手续费、点差与滑点会吞掉频繁交易策略的优势。</p></div>
-            <div class="rule"><b>03</b><p><strong>保留样本外区间</strong><br>最后一段历史数据不参与调参，只用于最终检查。</p></div>
-            <div class="rule"><b>04</b><p><strong>检查极端情景</strong><br>关注最大回撤、连续亏损和流动性，而不只看平均收益。</p></div>
+            <h3>Four gates before backtesting</h3>
+            <div class="rule"><b>01</b><p><strong>Eliminate look-ahead bias</strong><br>A signal formed after the close counts from the next trading period at the earliest.</p></div>
+            <div class="rule"><b>02</b><p><strong>Deduct real costs</strong><br>Commissions, spreads, and slippage eat the edge of frequently traded strategies.</p></div>
+            <div class="rule"><b>03</b><p><strong>Reserve an out-of-sample window</strong><br>The final stretch of history stays out of tuning — it’s for the final check only.</p></div>
+            <div class="rule"><b>04</b><p><strong>Stress-test extremes</strong><br>Watch max drawdown, losing streaks, and liquidity — not just average return.</p></div>
           </aside>
         </div>
       </div>
@@ -485,13 +503,13 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
       <div class="wrap">
         <div class="section-head">
           <div class="section-index">05 / ROADMAP</div>
-          <div><h2>四周入门路线</h2><p class="section-intro">每周交付一个小作品。比“看完所有课程再开始”更有效。</p></div>
+          <div><h2>A four-week starter roadmap</h2><p class="section-intro">Ship one small project each week — more effective than finishing every course before you begin.</p></div>
         </div>
         <div class="path">
-          <article><span class="week">WEEK 01</span><h3>数据与收益</h3><p>读取价格、处理缺失值，计算简单收益与对数收益。</p></article>
-          <article><span class="week">WEEK 02</span><h3>风险与组合</h3><p>理解波动率、相关性、分散化与最大回撤。</p></article>
-          <article><span class="week">WEEK 03</span><h3>信号与回测</h3><p>完成均线策略，处理信号滞后并计入交易成本。</p></article>
-          <article><span class="week">WEEK 04</span><h3>验证与复盘</h3><p>做时间切分、参数敏感性检查，并写一页研究结论。</p></article>
+          <article><span class="week">WEEK 01</span><h3>Data &amp; returns</h3><p>Read prices, handle missing values, and compute simple and log returns.</p></article>
+          <article><span class="week">WEEK 02</span><h3>Risk &amp; portfolios</h3><p>Understand volatility, correlation, diversification, and max drawdown.</p></article>
+          <article><span class="week">WEEK 03</span><h3>Signals &amp; backtesting</h3><p>Finish the moving-average strategy; handle signal lag and include transaction costs.</p></article>
+          <article><span class="week">WEEK 04</span><h3>Validation &amp; review</h3><p>Run time splits and parameter sensitivity checks, then write a one-page research note.</p></article>
         </div>
       </div>
     </section>
@@ -500,40 +518,40 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
       <div class="wrap">
         <div class="section-head">
           <div class="section-index">06 / REVENUE</div>
-          <div><h2>变现选择：先从低准入广告网络开始</h2><p class="section-intro">对刚上线、尚无稳定流量的网站，优先考虑没有最低流量要求、审核快、起付额低的方案；等内容与搜索流量成熟后，再测试更严格的平台。</p></div>
+          <div><h2>Monetization: start with low-barrier ad networks</h2><p class="section-intro">For a brand-new site with no stable traffic yet, prefer options with no minimum traffic requirement, fast review, and a low payout threshold; test stricter platforms once content and search traffic mature.</p></div>
         </div>
         <div class="money-plan">
           <article class="money-choice">
-            <span class="status">已选方案 · 广告已上线</span>
-            <h3>首选 Adsterra</h3>
-            <p>Adsterra 官方发布商指南称：无最低流量要求、可快速审核；Paxum 起付额 5 美元、PayPal 25 美元，按 NET15 结算。具体资格、地区和支付方式以申请时条款为准。</p>
-            <a href="https://adsterra.com/blog/set-up-publishers-dashboard/" target="_blank" rel="noopener noreferrer">查看发布商要求与官方说明 ↗</a>
+            <span class="status">Selected · ads live</span>
+            <h3>First choice: Adsterra</h3>
+            <p>Per Adsterra’s official publisher guide: no minimum traffic requirement, fast review; $5 minimum payout via Paxum, $25 via PayPal, on NET15 terms. Eligibility, regions, and payment methods are subject to the terms at sign-up.</p>
+            <a href="https://adsterra.com/blog/set-up-publishers-dashboard/" target="_blank" rel="noopener noreferrer">Publisher requirements &amp; official notes ↗</a>
           </article>
-          <div class="money-compare" aria-label="变现方案比较">
+          <div class="money-compare" aria-label="Monetization options compared">
             <article>
               <h3>Adsterra</h3>
               <dl>
-                <dt>流量门槛</dt><dd>官方称无最低要求</dd>
-                <dt>审核</dt><dd>官方称可快速开始</dd>
-                <dt>低起付路径</dt><dd>$5（Paxum）</dd>
-                <dt>当前状态</dt><dd>网站已获批，广告位已上线</dd>
+                <dt>Traffic threshold</dt><dd>Officially none</dd>
+                <dt>Review</dt><dd>Officially fast to start</dd>
+                <dt>Lowest payout route</dt><dd>$5 (Paxum)</dd>
+                <dt>Current status</dt><dd>Site approved, ad slot live</dd>
               </dl>
             </article>
             <article>
               <h3>Google AdSense</h3>
               <dl>
-                <dt>流量门槛</dt><dd>未公布固定最低值</dd>
-                <dt>审核</dt><dd>需内容与政策审核</dd>
-                <dt>美元付款阈值</dt><dd>通常 $100</dd>
-                <dt>适合阶段</dt><dd>内容与合规页面完善后</dd>
+                <dt>Traffic threshold</dt><dd>No fixed minimum published</dd>
+                <dt>Review</dt><dd>Content &amp; policy review required</dd>
+                <dt>USD payment threshold</dt><dd>Typically $100</dd>
+                <dt>Best stage</dt><dd>After content and compliance pages mature</dd>
               </dl>
             </article>
           </div>
         </div>
-        <div class="next-steps" aria-label="接入步骤">
-          <div><b>STEP 01</b><p>站主自行注册发布商账户并完成身份、税务与收款资料。这些信息不能由网站代填。</p></div>
-          <div><b>STEP 02</b><p>在广告平台创建广告位，取得专属代码；接入前页面不会展示模拟广告或虚假收益。</p></div>
-          <div><b>STEP 03</b><p>优先使用不遮挡教程的原生横幅，持续观察速度、跳出率与每千次展示收益。</p></div>
+        <div class="next-steps" aria-label="Integration steps">
+          <div><b>STEP 01</b><p>The site owner registers the publisher account personally and completes identity, tax, and payout details. This information can’t be filled in by the website.</p></div>
+          <div><b>STEP 02</b><p>Create an ad slot on the ad platform to get your dedicated code; before integration the page shows no placeholder ads or fake earnings.</p></div>
+          <div><b>STEP 03</b><p>Prefer native banners that don’t cover the tutorials; keep watching speed, bounce rate, and revenue per thousand impressions.</p></div>
         </div>
       </div>
     </section>
@@ -542,15 +560,15 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
       <div class="wrap">
         <div class="section-head">
           <div class="section-index">07 / FAQ</div>
-          <div><h2>关于量化交易，新手最常问的六个问题</h2><p class="section-intro">每个回答先给一句话结论，再补关键细节——方便快速查阅，也方便被引用。</p></div>
+          <div><h2>Quant trading: six questions beginners ask most</h2><p class="section-intro">Each answer leads with a one-sentence conclusion, then the key details — quick to scan, easy to cite.</p></div>
         </div>
         <div class="faq">
-          <article class="faq-item"><h3>什么是量化交易？</h3><p>量化交易是用数学模型和计算机程序辅助投资决策的方法。它把“买什么、何时买、买多少”写成明确规则，再用历史数据检验。与主观交易不同，它的优势在于纪律性、可重复和可度量风险，而不是“预测涨跌的魔法”。</p></article>
-          <article class="faq-item"><h3>量化金融的起点是什么？</h3><p>公认的起点是 1900 年路易·巴舍利耶的博士论文《投机理论》，他首次用随机过程研究期权定价。此后 1952 年马科维茨的组合理论、1973 年 Black–Scholes–Merton 期权定价模型，逐步把金融问题变成可计算的数学问题。</p></article>
-          <article class="faq-item"><h3>零基础可以学量化交易吗？需要什么基础？</h3><p>可以，但需要补三块基础：Python 编程（数据处理）、概率统计（理解波动与风险）、金融基础（收益率、组合、衍生品）。本站的四周路线就是按这个顺序设计的：先算收益率，再学风险与组合，然后写第一个均线策略，最后做样本外验证。</p></article>
-          <article class="faq-item"><h3>量化交易一定赚钱吗？</h3><p>不一定。任何策略都可能亏损，历史回测不代表未来表现。量化真正的价值是把风险算清楚：最大回撤、交易成本、过拟合和样本外失效，都是比“平均收益”更重要的指标。本页“回测前的四道闸”（消除未来函数、扣除成本、保留样本外、检查极端情景）就是新手最容易踩坑的地方。</p></article>
-          <article class="faq-item"><h3>什么是均值-方差组合理论？</h3><p>1952 年哈里·马科维茨提出的框架：投资者不应只看单只资产的预期收益，而应看资产之间的协方差，用分散化降低组合整体风险。它把“不要把鸡蛋放在一个篮子里”变成了可计算的优化问题，是现代组合理论的开端。</p></article>
-          <article class="faq-item"><h3>回测时最常见的错误是什么？</h3><p>三个：①未来函数——用了当时还不存在的数据做决策；②过拟合——参数只在历史数据上有效；③忽略成本——手续费和滑点会吞掉高频调仓策略的利润。对策是信号滞后一期执行、扣除真实成本、留出样本外区间只做最终检查。</p></article>
+          <article class="faq-item"><h3>What is quantitative trading?</h3><p>Quantitative trading uses mathematical models and computer programs to support investment decisions. It turns “what to buy, when, and how much” into explicit rules, then tests them on historical data. Unlike discretionary trading, its edge lies in discipline, repeatability, and measurable risk — not magic that predicts prices.</p></article>
+          <article class="faq-item"><h3>Where did quantitative finance begin?</h3><p>The widely accepted starting point is Louis Bachelier’s 1900 doctoral thesis, <i>Théorie de la spéculation</i>, the first work to study option pricing with stochastic processes. Markowitz’s portfolio theory (1952) and the Black–Scholes–Merton option pricing model (1973) then turned finance into computable mathematics, step by step.</p></article>
+          <article class="faq-item"><h3>Can a complete beginner learn quantitative trading? What background is needed?</h3><p>Yes — but you’ll need three foundations: Python programming (data work), probability and statistics (to understand volatility and risk), and finance basics (returns, portfolios, derivatives). This site’s four-week roadmap follows exactly that order: compute returns first, then risk and portfolios, then your first moving-average strategy, and finally out-of-sample validation.</p></article>
+          <article class="faq-item"><h3>Does quantitative trading always make money?</h3><p>No. Any strategy can lose money, and past backtests don’t predict future performance. The real value of quant is making risk explicit: max drawdown, transaction costs, overfitting, and out-of-sample failure all matter more than average return. The “four gates before backtesting” on this page — no look-ahead, real costs, an out-of-sample reserve, extreme scenarios — are exactly where beginners get hurt most.</p></article>
+          <article class="faq-item"><h3>What is mean–variance portfolio theory?</h3><p>Harry Markowitz’s 1952 framework: investors shouldn’t look only at an asset’s expected return in isolation, but at covariances between assets, using diversification to lower total portfolio risk. It turned “don’t put all your eggs in one basket” into a computable optimization problem — the beginning of modern portfolio theory.</p></article>
+          <article class="faq-item"><h3>What are the most common backtesting mistakes?</h3><p>Three: ① look-ahead bias — using data that didn’t exist yet at decision time; ② overfitting — parameters that only work on historical data; ③ ignoring costs — commissions and slippage devour the profits of high-turnover strategies. The fixes: lag signals by one period, deduct real costs, and hold out an out-of-sample window for the final check only.</p></article>
         </div>
       </div>
     </section>
@@ -559,23 +577,23 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
       <div class="wrap">
         <div class="section-head">
           <div class="section-index">08 / SOURCES</div>
-          <div><h2>继续查证，而不是只记结论</h2><p class="section-intro">以下资料用于核对关键历史节点。外部链接将在新窗口打开。</p></div>
+          <div><h2>Verify, don’t just memorize</h2><p class="section-intro">These sources were used to check the key historical milestones. External links open in a new tab.</p></div>
         </div>
         <div class="sources">
-          <a class="source" href="https://www.jstor.org/stable/j.ctt7scn4" target="_blank" rel="noopener noreferrer"><div><b>巴舍利耶《投机理论》</b><span>Princeton / JSTOR · 1900 起点与英译本</span></div><i>↗</i></a>
-          <a class="source" href="https://www.nobelprize.org/prizes/economic-sciences/1990/markowitz/facts/" target="_blank" rel="noopener noreferrer"><div><b>Harry Markowitz：组合选择</b><span>Nobel Prize · 1952 论文与现代组合理论</span></div><i>↗</i></a>
-          <a class="source" href="https://www.nobelprize.org/prizes/economic-sciences/1997/summary/" target="_blank" rel="noopener noreferrer"><div><b>1997 年经济学奖</b><span>Nobel Prize · Merton 与 Scholes 的衍生品定价方法</span></div><i>↗</i></a>
-          <a class="source" href="https://en.wikipedia.org/wiki/Black–Scholes_model" target="_blank" rel="noopener noreferrer"><div><b>Black–Scholes 模型概览</b><span>Wikipedia · 公式、历史与扩展阅读入口</span></div><i>↗</i></a>
+          <a class="source" href="https://www.jstor.org/stable/j.ctt7scn4" target="_blank" rel="noopener noreferrer"><div><b>Bachelier’s <i>Théorie de la spéculation</i></b><span>Princeton / JSTOR · the 1900 starting point and English translation</span></div><i>↗</i></a>
+          <a class="source" href="https://www.nobelprize.org/prizes/economic-sciences/1990/markowitz/facts/" target="_blank" rel="noopener noreferrer"><div><b>Harry Markowitz: Portfolio Selection</b><span>Nobel Prize · the 1952 paper and modern portfolio theory</span></div><i>↗</i></a>
+          <a class="source" href="https://www.nobelprize.org/prizes/economic-sciences/1997/summary/" target="_blank" rel="noopener noreferrer"><div><b>The 1997 Economics Prize</b><span>Nobel Prize · Merton and Scholes’ derivatives pricing method</span></div><i>↗</i></a>
+          <a class="source" href="https://en.wikipedia.org/wiki/Black–Scholes_model" target="_blank" rel="noopener noreferrer"><div><b>Black–Scholes model overview</b><span>Wikipedia · formula, history, and further reading</span></div><i>↗</i></a>
         </div>
-        <p class="notice"><strong>风险提示：</strong>本页仅用于教育与研究，不构成投资建议。历史回测不代表未来表现；任何策略都可能亏损，实盘前应核对数据、成本、合规要求与自身风险承受能力。</p>
+        <p class="notice"><strong>Risk disclosure:</strong> This page is for education and research only and is not investment advice. Backtested history doesn’t predict future performance; any strategy can lose money — verify data, costs, compliance requirements, and your own risk tolerance before trading live.</p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="wrap footer-inner">
-      <span>量化研究的第一条原则：先定义风险，再讨论收益。最后更新：2026-09-28。</span>
-      <a href="#history">返回时间线 ↑</a>
+      <span>The first principle of quantitative research: define risk before discussing returns. Last updated: 2026-09-28.</span>
+      <a href="#history">Back to the timeline ↑</a>
     </div>
   </footer>
 
@@ -600,7 +618,7 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
         var message = document.getElementById('calcMessage');
         var values = input.value.split(/[,，\s]+/).filter(Boolean).map(Number);
         if (values.length < 3 || values.some(function (v) { return !isFinite(v) || v <= 0; })) {
-          message.textContent = '请输入至少 3 个大于 0 的有效价格。';
+          message.textContent = 'Enter at least 3 valid prices greater than 0.';
           return;
         }
         message.textContent = '';
@@ -647,9 +665,9 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
       document.getElementById('copyCode').addEventListener('click', function () {
         var button = this;
         navigator.clipboard.writeText(document.getElementById('code').innerText).then(function () {
-          button.textContent = '已复制';
-          setTimeout(function () { button.textContent = '复制代码'; }, 1600);
-        }).catch(function () { button.textContent = '复制失败'; });
+          button.textContent = 'Copied';
+          setTimeout(function () { button.textContent = 'Copy code'; }, 1600);
+        }).catch(function () { button.textContent = 'Copy failed'; });
       });
       window.addEventListener('scroll', function () {
         var max = document.documentElement.scrollHeight - window.innerHeight;
