@@ -4,12 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
-  <meta name="description" content="一份从巴舍利耶到机器学习的量化金融简史，以及可直接动手的收益率、波动率与均线策略入门教程。" />
+  <meta name="description" content="量化交易发展史与新手入门教程：从1900年巴舍利耶的随机过程、马科维茨组合理论、Black-Scholes期权定价，到程序化交易、高频交易与机器学习。含收益率计算器、均线策略Python代码与四周学习路线。" />
+  <meta name="keywords" content="量化交易,量化投资,量化发展史,量化金融,程序化交易,高频交易,算法交易,均线策略,回测教程,马科维茨,Black-Scholes,quantitative finance,algorithmic trading" />
+  <meta name="author" content="量化发展史与教程" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://xinkuangsi-spec.github.io/" />
+  <meta name="theme-color" content="#f4f2ec" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="量化发展史与教程" />
+  <meta property="og:title" content="量化交易发展史与入门教程：从巴舍利耶到机器学习" />
+  <meta property="og:description" content="一份从随机过程到机器学习的量化金融简史，附可直接动手的收益率计算器、均线策略代码与四周入门路线。" />
+  <meta property="og:url" content="https://xinkuangsi-spec.github.io/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="量化交易发展史与入门教程：从巴舍利耶到机器学习" />
+  <meta name="twitter:description" content="一份从随机过程到机器学习的量化金融简史，附可直接动手的收益率计算器、均线策略代码与四周入门路线。" />
   <link rel="icon" href="data:," />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
-  <title>量化发展史与教程</title>
+  <title>量化交易发展史与入门教程：从巴舍利耶到机器学习</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -175,6 +189,13 @@
     .next-steps b { display: block; color: var(--accent); font: 600 12px/1 "IBM Plex Mono", monospace; }
     .next-steps p { margin: 11px 0 0; color: var(--muted); font-size: 14px; }
     .notice { margin-top: 28px; padding: 18px 20px; border: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .faq { border-top: 1px solid var(--line); }
+    .faq-item { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .faq-item h3 { margin: 0; font-size: 20px; line-height: 1.4; }
+    .faq-item p { margin: 0; color: var(--muted); }
+    @media (max-width: 840px) {
+      .faq-item { grid-template-columns: 1fr; gap: 10px; }
+    }
     .ad-slot { padding: 30px 0; border-bottom: 1px solid var(--line); }
     .ad-label { display: block; margin-bottom: 10px; font: 500 11px/1 "IBM Plex Mono", monospace; letter-spacing: .08em; color: var(--muted); }
     footer { padding: 34px 0 48px; }
@@ -221,6 +242,55 @@
       *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "量化发展史与教程",
+        "url": "https://xinkuangsi-spec.github.io/",
+        "inLanguage": "zh-CN",
+        "description": "中文量化金融简史与新手入门教程：时间线、核心概念、收益率计算器、均线策略代码与四周学习路线。"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "什么是量化交易？",
+            "acceptedAnswer": { "@type": "Answer", "text": "量化交易是用数学模型和计算机程序辅助投资决策的方法：把“买什么、何时买、买多少”写成明确规则，再用历史数据检验。它的优势在于纪律性、可重复和可度量风险，而不是预测涨跌的魔法。" }
+          },
+          {
+            "@type": "Question",
+            "name": "量化金融的起点是什么？",
+            "acceptedAnswer": { "@type": "Answer", "text": "公认的起点是1900年路易·巴舍利耶的博士论文《投机理论》，他首次用随机过程研究期权定价。此后1952年马科维茨的组合理论、1973年Black-Scholes-Merton期权定价模型，逐步把金融问题变成可计算的数学问题。" }
+          },
+          {
+            "@type": "Question",
+            "name": "零基础可以学量化交易吗？需要什么基础？",
+            "acceptedAnswer": { "@type": "Answer", "text": "可以，但需要补三块基础：Python编程、概率统计、金融基础知识。本站的四周路线按此顺序设计：先算收益率，再学风险与组合，然后写第一个均线策略，最后做样本外验证。" }
+          },
+          {
+            "@type": "Question",
+            "name": "量化交易一定赚钱吗？",
+            "acceptedAnswer": { "@type": "Answer", "text": "不一定。任何策略都可能亏损，历史回测不代表未来表现。量化真正的价值是把风险算清楚：最大回撤、交易成本、过拟合和样本外失效，都比平均收益更重要。" }
+          },
+          {
+            "@type": "Question",
+            "name": "什么是均值-方差组合理论？",
+            "acceptedAnswer": { "@type": "Answer", "text": "1952年哈里·马科维茨提出的框架：投资者不应只看单只资产的预期收益，而应看资产之间的协方差，用分散化降低组合整体风险。它把“不要把鸡蛋放在一个篮子里”变成了可计算的优化问题。" }
+          },
+          {
+            "@type": "Question",
+            "name": "回测时最常见的错误是什么？",
+            "acceptedAnswer": { "@type": "Answer", "text": "三个：未来函数（用了当时还不存在的数据）、过拟合（参数只在历史数据上有效）、忽略成本（手续费和滑点吞掉利润）。对策是信号滞后一期执行、扣除真实成本、留出样本外区间只做最终检查。" }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="progress" id="progress" aria-hidden="true"></div>
@@ -233,6 +303,7 @@
         <a href="#lab">动手实验</a>
         <a href="#strategy">策略雏形</a>
         <a href="#monetization">变现说明</a>
+        <a href="#faq">常见问题</a>
         <a href="#sources">资料来源</a>
       </div>
     </div>
@@ -464,10 +535,27 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
       </div>
     </section>
 
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">07 / FAQ</div>
+          <div><h2>关于量化交易，新手最常问的六个问题</h2><p class="section-intro">每个回答先给一句话结论，再补关键细节——方便快速查阅，也方便被引用。</p></div>
+        </div>
+        <div class="faq">
+          <article class="faq-item"><h3>什么是量化交易？</h3><p>量化交易是用数学模型和计算机程序辅助投资决策的方法。它把“买什么、何时买、买多少”写成明确规则，再用历史数据检验。与主观交易不同，它的优势在于纪律性、可重复和可度量风险，而不是“预测涨跌的魔法”。</p></article>
+          <article class="faq-item"><h3>量化金融的起点是什么？</h3><p>公认的起点是 1900 年路易·巴舍利耶的博士论文《投机理论》，他首次用随机过程研究期权定价。此后 1952 年马科维茨的组合理论、1973 年 Black–Scholes–Merton 期权定价模型，逐步把金融问题变成可计算的数学问题。</p></article>
+          <article class="faq-item"><h3>零基础可以学量化交易吗？需要什么基础？</h3><p>可以，但需要补三块基础：Python 编程（数据处理）、概率统计（理解波动与风险）、金融基础（收益率、组合、衍生品）。本站的四周路线就是按这个顺序设计的：先算收益率，再学风险与组合，然后写第一个均线策略，最后做样本外验证。</p></article>
+          <article class="faq-item"><h3>量化交易一定赚钱吗？</h3><p>不一定。任何策略都可能亏损，历史回测不代表未来表现。量化真正的价值是把风险算清楚：最大回撤、交易成本、过拟合和样本外失效，都是比“平均收益”更重要的指标。本页“回测前的四道闸”（消除未来函数、扣除成本、保留样本外、检查极端情景）就是新手最容易踩坑的地方。</p></article>
+          <article class="faq-item"><h3>什么是均值-方差组合理论？</h3><p>1952 年哈里·马科维茨提出的框架：投资者不应只看单只资产的预期收益，而应看资产之间的协方差，用分散化降低组合整体风险。它把“不要把鸡蛋放在一个篮子里”变成了可计算的优化问题，是现代组合理论的开端。</p></article>
+          <article class="faq-item"><h3>回测时最常见的错误是什么？</h3><p>三个：①未来函数——用了当时还不存在的数据做决策；②过拟合——参数只在历史数据上有效；③忽略成本——手续费和滑点会吞掉高频调仓策略的利润。对策是信号滞后一期执行、扣除真实成本、留出样本外区间只做最终检查。</p></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="sources">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-index">07 / SOURCES</div>
+          <div class="section-index">08 / SOURCES</div>
           <div><h2>继续查证，而不是只记结论</h2><p class="section-intro">以下资料用于核对关键历史节点。外部链接将在新窗口打开。</p></div>
         </div>
         <div class="sources">
@@ -483,7 +571,7 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
 
   <footer>
     <div class="wrap footer-inner">
-      <span>量化研究的第一条原则：先定义风险，再讨论收益。</span>
+      <span>量化研究的第一条原则：先定义风险，再讨论收益。最后更新：2026-09-28。</span>
       <a href="#history">返回时间线 ↑</a>
     </div>
   </footer>
