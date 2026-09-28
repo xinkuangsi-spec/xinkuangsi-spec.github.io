@@ -3,184 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网站数据看板 · 量化发展史</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="color-scheme" content="light dark">
-<title>网站数据看板</title>
 <style>
-  :root {
-    --paper: #f4f2ec; --surface: #fbfaf6; --surface-2: #ebe8df; --ink: #141413; --muted: #5b5a55;
-    --line: #d5d0c4; --line-strong: #b9b3a6; --accent: #c43c20; --green: #0a725d; --on-green: #fff;
-    --ok: #0a725d; --err: #c43c20; --warn: #a86a00;
-    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    --sans: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-    --ease: cubic-bezier(.16, 1, .3, 1);
+  :root{
+    --paper:#f7f2e8;
+    --card:#fffdf7;
+    --ink:#211d16;
+    --muted:#8b8375;
+    --line:#e7ddc9;
+    --accent:#c0392b;
+    --accent-soft:#f9e9e4;
+    --green:#1e7e46;
+    --green-soft:#e6f4ea;
+    --orange:#b26a00;
+    --orange-soft:#fdf1dc;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #0e100f; --surface: #151816; --surface-2: #1c201d; --ink: #f2eee5; --muted: #b1ada3;
-      --line: #262b27; --line-strong: #3a403b; --accent: #ff765c; --green: #65d6bc; --on-green: #06231c;
-      --ok: #65d6bc; --err: #ff765c; --warn: #f2b84b;
-    }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
   }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); color: var(--ink); font-family: var(--sans); line-height: 1.65; -webkit-font-smoothing: antialiased; }
-  a { color: inherit; }
-  .wrap { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 56px 0 80px; }
-  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
-  .mark { font: 600 12px/1 var(--mono); letter-spacing: .08em; color: var(--accent); }
-  h1 { margin: 14px 0 6px; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; letter-spacing: -.02em; }
-  .sub { margin: 0; color: var(--muted); font-size: 14px; }
-  .langs { display: flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
-  .langs a { padding: 5px 9px; font: 600 11px/1.3 var(--mono); color: var(--muted); text-decoration: none; transition: color .2s, background-color .2s; }
-  .langs a + a { border-left: 1px solid var(--line); }
-  .langs a:hover { color: var(--ink); background: var(--surface-2); }
-  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-  .card { position: relative; background: var(--surface); border: 1px solid var(--line); padding: 26px; transition: border-color .3s, transform .35s var(--ease); }
-  .card.wide { grid-column: 1 / -1; }
-  .card:hover { border-color: var(--line-strong); }
-  .idx { font: 600 11px/1 var(--mono); letter-spacing: .08em; color: var(--accent); }
-  .card h2 { margin: 12px 0 4px; font-size: 19px; letter-spacing: -.01em; }
-  .desc { margin: 0 0 18px; font-size: 13px; color: var(--muted); }
-  .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 18px; }
-  .kpi { background: var(--surface); padding: 16px; }
-  .kpi .v { font: 600 30px/1 var(--mono); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-  .kpi .l { margin-top: 8px; font-size: 12px; color: var(--muted); }
-  .row { display: flex; flex-wrap: wrap; gap: 10px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border: 1px solid var(--ink); border-radius: 2px; font-size: 14px; font-weight: 700; text-decoration: none; transition: background-color .2s, color .2s, border-color .2s, transform .2s var(--ease); }
-  .btn::after { content: "\2197"; font-family: var(--mono); font-weight: 400; transition: transform .3s var(--ease); }
-  .btn:hover { transform: translateY(-1px); }
-  .btn:hover::after { transform: translate(2px, -2px); }
-  .btn.primary { background: var(--ink); color: var(--paper); }
-  .btn.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn.ghost:hover { background: var(--surface-2); }
-  .badge { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 4px 10px; border: 1px solid currentColor; border-radius: 2px; font: 600 12px/1.4 var(--mono); }
-  .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-  .badge.ok { color: var(--ok); } .badge.err { color: var(--err); } .badge.warn { color: var(--warn); } .badge.mut { color: var(--muted); }
-  .badge.warn::before, .badge.mut::before { animation: pulse 1.4s ease-in-out infinite; }
-  @keyframes pulse { 50% { opacity: .25; } }
-  ol.steps { margin: 0 0 18px; padding: 0; list-style: none; counter-reset: s; }
-  ol.steps li { position: relative; padding: 10px 0 10px 36px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); counter-increment: s; }
-  ol.steps li:last-child { border-bottom: 1px solid var(--line); }
-  ol.steps li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: 11px; font: 600 12px/1.6 var(--mono); color: var(--accent); }
-  code { padding: 1px 6px; border: 1px solid var(--line); border-radius: 2px; background: var(--surface-2); font: 13px var(--mono); color: var(--ink); }
-  .note { margin-top: 18px; padding: 12px 14px; border-left: 2px solid var(--accent); background: var(--surface-2); font-size: 13px; color: var(--muted); }
-  .note b { color: var(--ink); }
-  .meta { margin: 0 0 18px; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 13px; }
-  .meta dt { color: var(--muted); font-family: var(--mono); font-size: 12px; padding-top: 1px; }
-  .meta dd { margin: 0; overflow-wrap: anywhere; }
-  footer { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); font: 12px var(--mono); color: var(--muted); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  @media (max-width: 720px) {
-    .wrap { padding-top: 36px; }
-    header { flex-direction: column; align-items: flex-start; }
-    .grid { grid-template-columns: minmax(0, 1fr); }
-    .kpi .v { font-size: 24px; }
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 24px 64px}
+  /* ---------- header ---------- */
+  .kicker{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:12px;
   }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+  h1{font-size:34px;font-weight:800;letter-spacing:.01em;margin-bottom:8px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:8px}
+  .sub code{font-family:var(--mono);font-size:13px;background:#efe8d8;padding:2px 8px;border-radius:6px;color:var(--ink)}
+  .backline{margin:18px 0 34px}
+  .backline a{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600}
+  .backline a:hover{text-decoration:underline}
+  /* ---------- grid ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 26px 24px;
+    box-shadow:0 1px 2px rgba(60,45,20,.05),0 8px 24px -18px rgba(60,45,20,.25);
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(60,45,20,.06),0 16px 32px -18px rgba(60,45,20,.3)}
+  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .card-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--muted)}
+  .card h2{font-size:21px;font-weight:750;margin:2px 0 10px}
+  .card p.desc{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .badge{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;
+    padding:4px 12px;border-radius:999px;white-space:nowrap;
+  }
+  .badge.gray{background:#f0ebdd;color:#7a7263}
+  .badge.green{background:var(--green-soft);color:var(--green)}
+  .badge.orange{background:var(--orange-soft);color:var(--orange)}
+  .badge.red{background:#fbe7e3;color:var(--accent)}
+  /* ---------- stats ---------- */
+  .stats{display:flex;gap:0;margin:4px 0 14px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .stat{flex:1;padding:14px 8px;text-align:center;background:#fbf8f0}
+  .stat+.stat{border-left:1px solid var(--line)}
+  .stat .v{font-family:var(--mono);font-size:22px;font-weight:700}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .stale{font-size:12px;color:var(--muted);margin-bottom:16px}
+  .stale b{color:var(--orange)}
+  /* ---------- buttons ---------- */
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;font-size:14px;font-weight:700;text-decoration:none;
+    padding:10px 20px;border-radius:9px;cursor:pointer;border:1px solid transparent;
+    transition:filter .2s ease,transform .15s ease;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  /* ---------- steps ---------- */
+  .steps{list-style:none;margin:4px 0 16px}
+  .steps li{
+    position:relative;font-size:14px;padding:10px 0 10px 34px;color:#4a4438;
+    border-bottom:1px dashed var(--line);
+  }
+  .steps li:last-child{border-bottom:none}
+  .steps .n{
+    position:absolute;left:0;top:10px;width:24px;height:24px;border-radius:50%;
+    background:var(--accent-soft);color:var(--accent);
+    font-family:var(--mono);font-size:12px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps code{font-family:var(--mono);font-size:12.5px;background:#f0ebdd;padding:1px 7px;border-radius:5px}
+  /* ---------- deploy ---------- */
+  .deployline{display:flex;align-items:center;gap:12px;margin:6px 0 14px;flex-wrap:wrap}
+  .depottime{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .commitmsg{font-size:13px;color:var(--muted);margin-bottom:16px;word-break:break-all}
+  .commitmsg code{font-family:var(--mono);font-size:12px}
+  /* ---------- footer ---------- */
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer a{color:var(--accent);text-decoration:none}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div>
-      <div class="mark">QF / ADMIN</div>
-      <h1>网站数据看板</h1>
-      <p class="sub">xinkuangsi-spec.github.io · 6 种语言版本 · 数据每天看一次就够了，不用一直盯</p>
-    </div>
-    <nav class="langs" aria-label="语言版本">
-      <a href="/">中文</a><a href="/en.html">EN</a><a href="/fr.html">FR</a><a href="/de.html">DE</a><a href="/pt.html">PT</a><a href="/es.html">ES</a>
-    </nav>
-  </header>
+
+  <div class="kicker">Admin / 数据</div>
+  <h1>网站数据看板</h1>
+  <p class="sub">站点 <code>xinkuangsi-spec.github.io</code> · 数据每天看一眼，心里有数</p>
+  <div class="backline"><a href="/">← 返回网站首页</a></div>
 
   <div class="grid">
-    <section class="card wide">
-      <span class="idx">01 / REVENUE</span>
-      <h2>广告收入（Adsterra）</h2>
-      <p class="desc">广告平台的数据必须登录 Adsterra 后台看，任何工具都抓不出来，下面是直达链接。</p>
-      <div class="kpis">
-        <div class="kpi"><div class="v">$0</div><div class="l">总收入（上次查看 9月28日）</div></div>
-        <div class="kpi"><div class="v">1</div><div class="l">总展示（上次查看 9月28日）</div></div>
-        <div class="kpi"><div class="v">0</div><div class="l">总点击（上次查看 9月28日）</div></div>
+
+    <!-- 1 Adsterra -->
+    <section class="card">
+      <div class="card-top">
+        <span class="card-kicker">01 / REVENUE</span>
+        <span class="badge gray">外部后台</span>
       </div>
-      <div class="row">
-        <a class="btn primary" href="https://beta.publishers.adsterra.com/" target="_blank" rel="noopener">打开 Adsterra 后台</a>
+      <h2>广告收入 · Adsterra</h2>
+      <p class="desc">实时收入只能去 Adsterra 官方后台看，下面是上次记录的数字，仅供参考。</p>
+      <div class="stats">
+        <div class="stat"><div class="v">$0</div><div class="l">余额</div></div>
+        <div class="stat"><div class="v">1</div><div class="l">展示</div></div>
+        <div class="stat"><div class="v">0</div><div class="l">点击</div></div>
       </div>
-      <div class="note">登录后点顶部 <b>Statistics</b>，时间范围选最近 7 天，就能看到展示、点击、收入。记得：<b>收款信息</b>（Payout information）也要在里面填，不然有收入也提不出来。</div>
+      <p class="stale">上次记录 <b>2026-09-28</b> · <b>非实时</b>，以官方后台为准</p>
+      <div class="btnrow">
+        <a class="btn primary" href="https://beta.publishers.adsterra.com/" target="_blank" rel="noopener">前往 Adsterra 后台 →</a>
+      </div>
     </section>
 
+    <!-- 2 GA -->
     <section class="card">
-      <span class="idx">02 / DEPLOY</span>
+      <div class="card-top">
+        <span class="card-kicker">02 / VISITORS</span>
+        <span class="badge orange">未接入</span>
+      </div>
+      <h2>访客统计 · Google Analytics</h2>
+      <p class="desc">还没接入。拿到衡量 ID 后告诉我，我来给 6 个语言页面加上。</p>
+      <ol class="steps">
+        <li><span class="n">1</span>打开 <code>analytics.google.com</code> 创建媒体资源</li>
+        <li><span class="n">2</span>把 <code>G-</code> 开头的衡量 ID 发给我</li>
+        <li><span class="n">3</span>我接入全部 6 个页面，这里会出现直达链接</li>
+      </ol>
+    </section>
+
+    <!-- 3 Deploy -->
+    <section class="card">
+      <div class="card-top">
+        <span class="card-kicker">03 / DEPLOY</span>
+        <span class="badge gray" id="deploy-badge">读取中…</span>
+      </div>
       <h2>网站运行状态</h2>
-      <p class="desc">实时从 GitHub 读取：最后一次部署是否成功、什么时候部署的。</p>
-      <div id="deployBox"><span class="badge mut">读取中…</span></div>
-      <div class="row">
-        <a class="btn ghost" href="https://github.com/xinkuangsi-spec/xinkuangsi-spec.github.io/actions" target="_blank" rel="noopener">查看构建记录</a>
-        <a class="btn ghost" href="https://github.com/xinkuangsi-spec/xinkuangsi-spec.github.io" target="_blank" rel="noopener">打开网站仓库</a>
+      <p class="desc">每次推送代码后，GitHub 会自动重新发布，这里显示最近一次的结果。</p>
+      <div class="deployline">
+        <span class="depottime" id="deploy-time">正在读取…</span>
+      </div>
+      <p class="commitmsg" id="deploy-msg"></p>
+      <div class="btnrow">
+        <a class="btn ghost" href="https://github.com/xinkuangsi-spec/xinkuangsi-spec.github.io/actions" target="_blank" rel="noopener">构建记录</a>
+        <a class="btn ghost" href="https://github.com/xinkuangsi-spec/xinkuangsi-spec.github.io" target="_blank" rel="noopener">网站仓库</a>
       </div>
     </section>
 
+    <!-- 4 Index -->
     <section class="card">
-      <span class="idx">03 / SEARCH</span>
+      <div class="card-top">
+        <span class="card-kicker">04 / SEARCH</span>
+        <span class="badge gray">手动查看</span>
+      </div>
       <h2>搜索引擎收录</h2>
-      <p class="desc">新站刚上线，收录需要几天到几周。点下面搜一下，有结果就说明被收录了。</p>
-      <div class="row">
-        <a class="btn ghost" href="https://www.google.com/search?q=site%3Axinkuangsi-spec.github.io" target="_blank" rel="noopener">Google 查收录</a>
-        <a class="btn ghost" href="https://www.bing.com/search?q=site%3Axinkuangsi-spec.github.io" target="_blank" rel="noopener">Bing 查收录</a>
+      <p class="desc">新站收录需要几天到几周，点下面看看搜不搜得到自己。</p>
+      <div class="btnrow">
+        <a class="btn ghost" href="https://www.google.com/search?q=site%3Axinkuangsi-spec.github.io" target="_blank" rel="noopener">Google 收录 →</a>
+        <a class="btn ghost" href="https://www.bing.com/search?q=site%3Axinkuangsi-spec.github.io" target="_blank" rel="noopener">Bing 收录 →</a>
       </div>
     </section>
 
-    <section class="card wide">
-      <span class="idx">04 / TRAFFIC</span>
-      <h2>访客统计（Google Analytics）</h2>
-      <p class="desc">看每天多少人访问、从哪个国家来、看了哪个语言版本。</p>
-      <div id="gaPending">
-        <span class="badge warn">未接入</span>
-        <ol class="steps">
-          <li>打开 <a href="https://analytics.google.com/" target="_blank" rel="noopener">analytics.google.com</a>，用你的 Google 账号登录，创建一个媒体资源（网站）并添加数据流。</li>
-          <li>把 <code>G-</code> 开头的衡量 ID 发给我。</li>
-          <li>我把它加到 6 个页面并重新部署，之后这里就会显示直达链接。</li>
-        </ol>
-      </div>
-      <div class="row">
-        <a class="btn ghost" href="https://analytics.google.com/" target="_blank" rel="noopener">打开 Google Analytics</a>
-      </div>
-    </section>
   </div>
 
-  <footer>noindex · 本页不对搜索引擎公开</footer>
+  <footer>
+    <span>数据看板 · 仅站长可见（已屏蔽搜索引擎）</span>
+    <a href="/">← 返回网站</a>
+  </footer>
 </div>
 
 <script>
-(function () {
-  var box = document.getElementById('deployBox');
-  function fmtTime(iso) {
-    try { return new Date(iso).toLocaleString('zh-CN', { hour12: false }); }
-    catch (e) { return iso; }
-  }
-  function ago(iso) {
-    var s = Math.max(0, (Date.now() - new Date(iso).getTime()) / 1000);
-    if (s < 60) return '刚刚';
-    if (s < 3600) return Math.floor(s / 60) + ' 分钟前';
-    if (s < 86400) return Math.floor(s / 3600) + ' 小时前';
-    return Math.floor(s / 86400) + ' 天前';
-  }
-  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+(function(){
+  var badge=document.getElementById('deploy-badge');
+  var time=document.getElementById('deploy-time');
+  var msg=document.getElementById('deploy-msg');
   fetch('https://api.github.com/repos/xinkuangsi-spec/xinkuangsi-spec.github.io/actions/runs?per_page=1')
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(function (j) {
-      var run = (j.workflow_runs || [])[0];
-      if (!run) { box.innerHTML = '<span class="badge mut">暂无构建记录</span>'; return; }
-      var badge, txt;
-      if (run.status === 'completed' && run.conclusion === 'success') { badge = 'ok'; txt = '部署成功'; }
-      else if (run.status === 'completed') { badge = 'err'; txt = '构建失败：' + run.conclusion; }
-      else { badge = 'warn'; txt = '构建中…'; }
-      var msg = (run.head_commit && run.head_commit.message) ? run.head_commit.message.split('\n')[0] : '';
-      box.innerHTML = '<span class="badge ' + badge + '">' + txt + '</span>' +
-        '<dl class="meta"><dt>最后部署</dt><dd>' + fmtTime(run.updated_at) + '（' + ago(run.updated_at) + '）</dd>' +
-        '<dt>提交说明</dt><dd>' + esc(msg) + '</dd></dl>';
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var run=(d.workflow_runs||[])[0];
+      if(!run){throw new Error('empty');}
+      var dt=new Date(run.updated_at);
+      var fmt=dt.getFullYear()+'/'+String(dt.getMonth()+1).padStart(2,'0')+'/'+String(dt.getDate()).padStart(2,'0')
+        +' '+String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0')+':'+String(dt.getSeconds()).padStart(2,'0');
+      time.textContent='最后部署：'+fmt;
+      msg.innerHTML='提交说明：<code>'+String(run.head_commit&&run.head_commit.message||'—').replace(/</g,'&lt;')+'</code>';
+      if(run.status==='completed'&&run.conclusion==='success'){
+        badge.textContent='部署成功';badge.className='badge green';
+      }else if(run.status!=='completed'){
+        badge.textContent='构建中…';badge.className='badge orange';
+      }else{
+        badge.textContent='部署失败';badge.className='badge red';
+      }
     })
-    .catch(function () {
-      box.innerHTML = '<span class="badge mut">读取失败，请点"查看构建记录"手动确认</span>';
+    .catch(function(){
+      badge.textContent='读取失败';badge.className='badge red';
+      time.textContent='接口暂时不可用，稍后刷新重试';
     });
 })();
 </script>
