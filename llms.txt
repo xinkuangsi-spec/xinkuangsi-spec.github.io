@@ -15,6 +15,9 @@
 - 四周入门路线: https://xinkuangsi-spec.github.io/#path
 - 常见问题: https://xinkuangsi-spec.github.io/#faq
 - 资料来源: https://xinkuangsi-spec.github.io/#sources
+- 量化学院（学习路径）: https://xinkuangsi-spec.github.io/#school
+  - 量化交易到底是什么: https://xinkuangsi-spec.github.io/school/what-is-quant.html
+  - 新手必踩的7个坑: https://xinkuangsi-spec.github.io/school/seven-pitfalls.html
 
 ## 内容说明
 

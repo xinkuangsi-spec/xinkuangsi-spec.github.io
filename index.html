@@ -493,9 +493,9 @@
         <a href="#concepts">核心概念</a>
         <a href="#lab">动手实验</a>
         <a href="#strategy">策略雏形</a>
-        <a href="#monetization">变现说明</a>
         <a href="#faq">常见问题</a>
         <a href="#sources">资料来源</a>
+        <a href="#school">学习路径</a>
         </div>
         <div class="nav-langs">
         <a href="/" lang="zh-CN">中文</a>
@@ -693,52 +693,12 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
       </div>
     </section>
 
-    <section class="section" id="monetization">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-index">06 / REVENUE</div>
-          <div><h2>变现选择：先从低准入广告网络开始</h2><p class="section-intro">对刚上线、尚无稳定流量的网站，优先考虑没有最低流量要求、审核快、起付额低的方案；等内容与搜索流量成熟后，再测试更严格的平台。</p></div>
-        </div>
-        <div class="money-plan">
-          <article class="money-choice">
-            <span class="status">已选方案 · 广告已上线</span>
-            <h3>首选 Adsterra</h3>
-            <p>Adsterra 官方发布商指南称：无最低流量要求、可快速审核；Paxum 起付额 5 美元、PayPal 25 美元，按 NET15 结算。具体资格、地区和支付方式以申请时条款为准。</p>
-            <a href="https://adsterra.com/blog/set-up-publishers-dashboard/" target="_blank" rel="noopener noreferrer">查看发布商要求与官方说明 ↗</a>
-          </article>
-          <div class="money-compare" aria-label="变现方案比较">
-            <article>
-              <h3>Adsterra</h3>
-              <dl>
-                <dt>流量门槛</dt><dd>官方称无最低要求</dd>
-                <dt>审核</dt><dd>官方称可快速开始</dd>
-                <dt>低起付路径</dt><dd>$5（Paxum）</dd>
-                <dt>当前状态</dt><dd>网站已获批，广告位已上线</dd>
-              </dl>
-            </article>
-            <article>
-              <h3>Google AdSense</h3>
-              <dl>
-                <dt>流量门槛</dt><dd>未公布固定最低值</dd>
-                <dt>审核</dt><dd>需内容与政策审核</dd>
-                <dt>美元付款阈值</dt><dd>通常 $100</dd>
-                <dt>适合阶段</dt><dd>内容与合规页面完善后</dd>
-              </dl>
-            </article>
-          </div>
-        </div>
-        <div class="next-steps" aria-label="接入步骤">
-          <div><b>STEP 01</b><p>站主自行注册发布商账户并完成身份、税务与收款资料。这些信息不能由网站代填。</p></div>
-          <div><b>STEP 02</b><p>在广告平台创建广告位，取得专属代码；接入前页面不会展示模拟广告或虚假收益。</p></div>
-          <div><b>STEP 03</b><p>优先使用不遮挡教程的原生横幅，持续观察速度、跳出率与每千次展示收益。</p></div>
-        </div>
-      </div>
-    </section>
+    
 
     <section class="section" id="faq">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-index">07 / FAQ</div>
+          <div class="section-index">06 / FAQ</div>
           <div><h2>关于量化交易，新手最常问的六个问题</h2><p class="section-intro">每个回答先给一句话结论，再补关键细节——方便快速查阅，也方便被引用。</p></div>
         </div>
         <div class="faq">
@@ -755,7 +715,7 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
     <section class="section" id="sources">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-index">08 / SOURCES</div>
+          <div class="section-index">07 / SOURCES</div>
           <div><h2>继续查证，而不是只记结论</h2><p class="section-intro">以下资料用于核对关键历史节点。外部链接将在新窗口打开。</p></div>
         </div>
         <div class="sources">
@@ -765,6 +725,20 @@ df[<span class="fn">"strategy_ret"</span>] = df[<span class="fn">"position"</spa
           <a class="source" href="https://en.wikipedia.org/wiki/Black–Scholes_model" target="_blank" rel="noopener noreferrer"><div><b>Black–Scholes 模型概览</b><span>Wikipedia · 公式、历史与扩展阅读入口</span></div><i>↗</i></a>
         </div>
         <p class="notice"><strong>风险提示：</strong>本页仅用于教育与研究，不构成投资建议。历史回测不代表未来表现；任何策略都可能亏损，实盘前应核对数据、成本、合规要求与自身风险承受能力。</p>
+      </div>
+    </section>
+
+    <section class="section" id="school">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-index">08 / SCHOOL</div>
+          <div><h2>量化学院：手把手教你动手</h2><p class="section-intro">AI 时代，人人能写策略代码。我们的任务是告诉你每一步怎么做——从建立认知，到用 AI 写出第一个策略，再到风控与实盘。</p></div>
+        </div>
+        <div class="principles">
+          <article class="principle"><span class="num">S1 / 01</span><h3><a href="/school/what-is-quant.html">量化交易到底是什么？真能赚钱吗</a></h3><p>一句话讲清量化，对比主观交易，诚实回答散户能不能赚钱。附 AI 启蒙提示词和你的第一段量化代码。</p></article>
+          <article class="principle"><span class="num">S1 / 02</span><h3><a href="/school/seven-pitfalls.html">新手必踩的 7 个坑</a></h3><p>过拟合、未来函数、忽略交易成本……每一个坑都足以一次亏光。先保命，再谈赚钱。附 AI 策略审查提示词。</p></article>
+        </div>
+        <p class="notice">后续章节：Python 速成 · AI 写策略工作流 · 第一个均线策略 · 回测框架 · 风险管理 · 免费数据源 · 模拟盘，陆续更新。</p>
       </div>
     </section>
   </main>
