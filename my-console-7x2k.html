@@ -107,9 +107,31 @@
   footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);
     font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   footer a{color:var(--accent);text-decoration:none}
+
+/* 口令锁 */
+body.locked .wrap{visibility:hidden}
+.gate{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:var(--paper);padding:24px}
+body.locked .gate{display:flex}
+.gate-card{width:min(380px,100%);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);padding:32px 28px;text-align:center}
+.gate-card h2{margin:0 0 6px;font-size:20px}
+.gate-card p{margin:0 0 18px;color:var(--muted);font-size:13px}
+.gate-card input{width:100%;height:48px;padding:0 14px;border:1px solid var(--line-strong);border-radius:2px;background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:16px;text-align:center;letter-spacing:.1em;box-sizing:border-box}
+.gate-card button{width:100%;min-height:48px;margin-top:12px;border:0;border-radius:2px;background:var(--ink);color:var(--paper);font-weight:700;font-size:15px;cursor:pointer}
+.gate-err{min-height:20px;margin-top:10px;color:var(--accent-ink);font-size:13px}
+.gate .kicker{margin-bottom:14px}
 </style>
 </head>
-<body>
+<body class="locked">
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="kicker">Admin / 数据</div>
+    <h2>请输入口令</h2>
+    <p>这是站长的数据看板，访客止步</p>
+    <input type="password" id="gate-pw" placeholder="口令" autocomplete="off" />
+    <button id="gate-btn" type="button">进入</button>
+    <div class="gate-err" id="gate-err"></div>
+  </div>
+</div>
 <div class="wrap">
 
   <div class="kicker">Admin / 数据</div>
@@ -194,6 +216,49 @@
 </div>
 
 <script>
+(function(){
+  var HASH = 'b4ddc3d23db15cc178e27d4bc66c33c7a52430b8c9556b82e6c8e24109701ddf';
+  var gate = document.getElementById('gate'),
+      input = document.getElementById('gate-pw'),
+      btn = document.getElementById('gate-btn'),
+      err = document.getElementById('gate-err');
+  function locked(){ return document.body.classList.contains('locked'); }
+  function unlock(){
+    document.body.classList.remove('locked');
+    try{ sessionStorage.setItem('dash_unlocked','1'); }catch(e){}
+  }
+  try{ if(sessionStorage.getItem('dash_unlocked')==='1'){ unlock(); return; } }catch(e){}
+  function tries(){ try{ return parseInt(sessionStorage.getItem('dash_tries')||'0',10)||0; }catch(e){ return 0; } }
+  function setTries(n){ try{ sessionStorage.setItem('dash_tries', String(n)); }catch(e){} }
+  function lockUntil(){ try{ return parseInt(sessionStorage.getItem('dash_lock')||'0',10)||0; }catch(e){ return 0; } }
+  async function sha256hex(str){
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.prototype.map.call(new Uint8Array(buf), function(b){ return ('0'+b.toString(16)).slice(-2); }).join('');
+  }
+  async function check(){
+    if(!locked()) return;
+    var now = Date.now(), lu = lockUntil();
+    if(now < lu){ err.textContent = '尝试太频繁，请 ' + Math.ceil((lu-now)/1000) + ' 秒后再试'; return; }
+    var v = input.value.trim();
+    if(!v){ err.textContent = '请输入口令'; return; }
+    btn.disabled = true;
+    try{
+      var hex = await sha256hex(v);
+      if(hex === HASH){ setTries(0); unlock(); }
+      else{
+        var n = tries()+1; setTries(n); input.value='';
+        if(n >= 5){ try{ sessionStorage.setItem('dash_lock', String(Date.now()+60000)); }catch(e){} setTries(0); err.textContent='输错太多次，1 分钟后再试'; }
+        else{ err.textContent='口令不对（还剩 '+(5-n)+' 次机会）'; }
+      }
+    }catch(e){ err.textContent='浏览器不支持，请换个浏览器试试'; }
+    btn.disabled = false; input.focus();
+  }
+  btn.addEventListener('click', check);
+  input.addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+  setTimeout(function(){ if(locked()) input.focus(); }, 300);
+})();
+</script>
+
 (function(){
   var badge=document.getElementById('deploy-badge');
   var time=document.getElementById('deploy-time');
