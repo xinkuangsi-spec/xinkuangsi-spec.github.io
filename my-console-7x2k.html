@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网站数据看板 · 量化发展史</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --paper:#f7f2e8;
+    --card:#fffdf7;
+    --ink:#211d16;
+    --muted:#8b8375;
+    --line:#e7ddc9;
+    --accent:#c0392b;
+    --accent-soft:#f9e9e4;
+    --green:#1e7e46;
+    --green-soft:#e6f4ea;
+    --orange:#b26a00;
+    --orange-soft:#fdf1dc;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 24px 64px}
+  /* ---------- header ---------- */
+  .kicker{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+  }
+  h1{font-size:34px;font-weight:800;letter-spacing:.01em;margin-bottom:8px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:8px}
+  .sub code{font-family:var(--mono);font-size:13px;background:#efe8d8;padding:2px 8px;border-radius:6px;color:var(--ink)}
+  .backline{margin:18px 0 34px}
+  .backline a{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600}
+  .backline a:hover{text-decoration:underline}
+  /* ---------- grid ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 26px 24px;
+    box-shadow:0 1px 2px rgba(60,45,20,.05),0 8px 24px -18px rgba(60,45,20,.25);
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(60,45,20,.06),0 16px 32px -18px rgba(60,45,20,.3)}
+  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .card-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--muted)}
+  .card h2{font-size:21px;font-weight:750;margin:2px 0 10px}
+  .card p.desc{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .badge{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;
+    padding:4px 12px;border-radius:999px;white-space:nowrap;
+  }
+  .badge.gray{background:#f0ebdd;color:#7a7263}
+  .badge.green{background:var(--green-soft);color:var(--green)}
+  .badge.orange{background:var(--orange-soft);color:var(--orange)}
+  .badge.red{background:#fbe7e3;color:var(--accent)}
+  /* ---------- stats ---------- */
+  .stats{display:flex;gap:0;margin:4px 0 14px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .stat{flex:1;padding:14px 8px;text-align:center;background:#fbf8f0}
+  .stat+.stat{border-left:1px solid var(--line)}
+  .stat .v{font-family:var(--mono);font-size:22px;font-weight:700}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .stale{font-size:12px;color:var(--muted);margin-bottom:16px}
+  .stale b{color:var(--orange)}
+  /* ---------- buttons ---------- */
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;font-size:14px;font-weight:700;text-decoration:none;
+    padding:10px 20px;border-radius:9px;cursor:pointer;border:1px solid transparent;
+    transition:filter .2s ease,transform .15s ease;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  /* ---------- steps ---------- */
+  .steps{list-style:none;margin:4px 0 16px}
+  .steps li{
+    position:relative;font-size:14px;padding:10px 0 10px 34px;color:#4a4438;
+    border-bottom:1px dashed var(--line);
+  }
+  .steps li:last-child{border-bottom:none}
+  .steps .n{
+    position:absolute;left:0;top:10px;width:24px;height:24px;border-radius:50%;
+    background:var(--accent-soft);color:var(--accent);
+    font-family:var(--mono);font-size:12px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps code{font-family:var(--mono);font-size:12.5px;background:#f0ebdd;padding:1px 7px;border-radius:5px}
+  /* ---------- deploy ---------- */
+  .deployline{display:flex;align-items:center;gap:12px;margin:6px 0 14px;flex-wrap:wrap}
+  .depottime{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .commitmsg{font-size:13px;color:var(--muted);margin-bottom:16px;word-break:break-all}
+  .commitmsg code{font-family:var(--mono);font-size:12px}
+  /* ---------- footer ---------- */
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Admin / 数据</div>
+  <h1>网站数据看板</h1>
+  <p class="sub">站点 <code>xinkuangsi-spec.github.io</code> · 数据每天看一眼，心里有数</p>
+  <div class="backline"><a href="/">← 返回网站首页</a></div>
+
+  <div class="grid">
+
+    <!-- 1 Adsterra -->
+    <section class="card">
+      <div class="card-top">
+        <span class="card-kicker">01 / REVENUE</span>
+        <span class="badge gray">外部后台</span>
+      </div>
+      <h2>广告收入 · Adsterra</h2>
+      <p class="desc">实时收入只能去 Adsterra 官方后台看，下面是上次记录的数字，仅供参考。</p>
+      <div class="stats">
+        <div class="stat"><div class="v">$0</div><div class="l">余额</div></div>
+        <div class="stat"><div class="v">1</div><div class="l">展示</div></div>
+        <div class="stat"><div class="v">0</div><div class="l">点击</div></div>
+      </div>
+      <p class="stale">上次记录 <b>2026-09-28</b> · <b>非实时</b>，以官方后台为准</p>
+      <div class="btnrow">
+        <a class="btn primary" href="https://beta.publishers.adsterra.com/" target="_blank" rel="noopener">前往 Adsterra 后台 →</a>
+      </div>
+    </section>
+
+    <!-- 2 GA -->
+    <section class="card">
+      <div class="card-top">
+        <span class="card-kicker">02 / VISITORS</span>
+        <span class="badge orange">未接入</span>
+      </div>
+      <h2>访客统计 · Google Analytics</h2>
+      <p class="desc">还没接入。拿到衡量 ID 后告诉我，我来给 6 个语言页面加上。</p>
+      <ol class="steps">
+        <li><span class="n">1</span>打开 <code>analytics.google.com</code> 创建媒体资源</li>
+        <li><span class="n">2</span>把 <code>G-</code> 开头的衡量 ID 发给我</li>
+        <li><span class="n">3</span>我接入全部 6 个页面，这里会出现直达链接</li>
+      </ol>
+    </section>
+
+    <!-- 3 Deploy -->
+    <section class="card">
+      <div class="card-top">
+        <span class="card-kicker">03 / DEPLOY</span>
+        <span class="badge gray" id="deploy-badge">读取中…</span>
+      </div>
+      <h2>网站运行状态</h2>
+      <p class="desc">每次推送代码后，GitHub 会自动重新发布，这里显示最近一次的结果。</p>
+      <div class="deployline">
+        <span class="depottime" id="deploy-time">正在读取…</span>
+      </div>
+      <p class="commitmsg" id="deploy-msg"></p>
+      <div class="btnrow">
+        <a class="btn ghost" href="https://github.com/xinkuangsi-spec/xinkuangsi-spec.github.io/actions" target="_blank" rel="noopener">构建记录</a>
+        <a class="btn ghost" href="https://github.com/xinkuangsi-spec/xinkuangsi-spec.github.io" target="_blank" rel="noopener">网站仓库</a>
+      </div>
+    </section>
+
+    <!-- 4 Index -->
+    <section class="card">
+      <div class="card-top">
+        <span class="card-kicker">04 / SEARCH</span>
+        <span class="badge gray">手动查看</span>
+      </div>
+      <h2>搜索引擎收录</h2>
+      <p class="desc">新站收录需要几天到几周，点下面看看搜不搜得到自己。</p>
+      <div class="btnrow">
+        <a class="btn ghost" href="https://www.google.com/search?q=site%3Axinkuangsi-spec.github.io" target="_blank" rel="noopener">Google 收录 →</a>
+        <a class="btn ghost" href="https://www.bing.com/search?q=site%3Axinkuangsi-spec.github.io" target="_blank" rel="noopener">Bing 收录 →</a>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>数据看板 · 仅站长可见（已屏蔽搜索引擎）</span>
+    <a href="/">← 返回网站</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var badge=document.getElementById('deploy-badge');
+  var time=document.getElementById('deploy-time');
+  var msg=document.getElementById('deploy-msg');
+  fetch('https://api.github.com/repos/xinkuangsi-spec/xinkuangsi-spec.github.io/actions/runs?per_page=1')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var run=(d.workflow_runs||[])[0];
+      if(!run){throw new Error('empty');}
+      var dt=new Date(run.updated_at);
+      var fmt=dt.getFullYear()+'/'+String(dt.getMonth()+1).padStart(2,'0')+'/'+String(dt.getDate()).padStart(2,'0')
+        +' '+String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0')+':'+String(dt.getSeconds()).padStart(2,'0');
+      time.textContent='最后部署：'+fmt;
+      msg.innerHTML='提交说明：<code>'+String(run.head_commit&&run.head_commit.message||'—').replace(/</g,'&lt;')+'</code>';
+      if(run.status==='completed'&&run.conclusion==='success'){
+        badge.textContent='部署成功';badge.className='badge green';
+      }else if(run.status!=='completed'){
+        badge.textContent='构建中…';badge.className='badge orange';
+      }else{
+        badge.textContent='部署失败';badge.className='badge red';
+      }
+    })
+    .catch(function(){
+      badge.textContent='读取失败';badge.className='badge red';
+      time.textContent='接口暂时不可用，稍后刷新重试';
+    });
+})();
+</script>
+</body>
+</html>
