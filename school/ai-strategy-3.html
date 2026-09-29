@@ -12,17 +12,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
-  <title>量化交易到底是什么？真能赚钱吗 | 量化学院</title>
-  <meta name="description" content="一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。" />
-  <meta name="keywords" content="量化交易是什么,量化入门,量化能赚钱吗,量化交易教程,AI写策略" />
-  <link rel="canonical" href="https://xinkuangsi-spec.github.io/school/what-is-quant.html" />
+  <title>AI写策略第3课：双均线策略回测，复制粘贴就能跑 | 量化学院</title>
+  <meta name="description" content="双均线策略完整Python回测代码：金叉死叉信号、交易成本、年化收益、最大回撤。附真实运行的预期输出，一步步解读每个指标。" />
+  <meta name="keywords" content="双均线策略,回测代码,金叉死叉,量化回测教程,均线策略Python" />
+  <link rel="canonical" href="https://xinkuangsi-spec.github.io/school/ai-strategy-3.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="量化交易到底是什么？真能赚钱吗" />
-  <meta property="og:description" content="一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。" />
-  <meta property="og:url" content="https://xinkuangsi-spec.github.io/school/what-is-quant.html" />
+  <meta property="og:title" content="AI写策略第3课：双均线策略回测，复制粘贴就能跑" />
+  <meta property="og:description" content="双均线策略完整Python回测代码：金叉死叉信号、交易成本、年化收益、最大回撤。附真实运行的预期输出，一步步解读每个指标。" />
+  <meta property="og:url" content="https://xinkuangsi-spec.github.io/school/ai-strategy-3.html" />
   <meta name="twitter:card" content="summary" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","headline":"量化交易到底是什么？真能赚钱吗","description":"一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。","inLanguage":"zh-CN","author":{"@type":"Organization","name":"量化发展史与教程"},"publisher":{"@type":"Organization","name":"量化发展史与教程"},"mainEntityOfPage":"https://xinkuangsi-spec.github.io/school/what-is-quant.html","datePublished":"2026-09-29"}
+  {"@context": "https://schema.org", "@type": "Article", "headline": "AI写策略第3课：双均线策略回测，复制粘贴就能跑", "description": "双均线策略完整Python回测代码：金叉死叉信号、交易成本、年化收益、最大回撤。附真实运行的预期输出，一步步解读每个指标。", "inLanguage": "zh-CN", "author": {"@type": "Organization", "name": "量化发展史与教程"}, "publisher": {"@type": "Organization", "name": "量化发展史与教程"}, "mainEntityOfPage": "https://xinkuangsi-spec.github.io/school/ai-strategy-3.html", "datePublished": "2026-09-29"}
   </script>
 <style>
     @font-face { font-family: "Inter Fallback"; src: local("Arial"); ascent-override: 90.44%; descent-override: 22.52%; line-gap-override: 0%; size-adjust: 107.12%; }
@@ -447,6 +447,37 @@
 @media(max-width:640px){.vs{grid-template-columns:1fr}}
 .article h1{font-size:clamp(30px,5vw,52px);line-height:1.18;letter-spacing:0;margin:14px 0 16px;text-wrap:balance}
 a.nav-mark{text-decoration:none;color:inherit}
+
+.toc{margin:24px 0;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:2px}
+.toc h4{margin:0 0 10px;font-size:14px;letter-spacing:.06em}
+.toc ol{margin:0;padding-left:20px;font-size:14.5px;color:var(--muted)}
+.toc a{color:var(--accent-ink);text-decoration:none}
+.step{margin:26px 0;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:2px}
+.step h3{margin:0 0 10px;font-size:17px}
+.step h3 .sn{display:inline-block;min-width:28px;height:28px;line-height:28px;text-align:center;background:var(--ink);color:var(--paper);border-radius:50%;font-size:13px;margin-right:10px}
+.step p{margin:0 0 8px;font-size:15px}
+.step ul{margin:8px 0;font-size:15px}
+.warn{margin:24px 0;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent-ink);border-radius:2px;font-size:14.5px}
+.warn strong{color:var(--accent-ink)}
+.ok{margin:24px 0;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:2px;font-size:14.5px}
+.ok strong{color:var(--green)}
+.ok pre{margin:8px 0 0;font-family:var(--mono);font-size:13.5px;line-height:1.75;white-space:pre-wrap}
+table.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px}
+table.spec th,table.spec td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+table.spec th{background:var(--surface-2);font-size:13.5px;white-space:nowrap}
+.check{list-style:none;margin:16px 0;padding:0}
+.check li{position:relative;padding:10px 12px 10px 40px;margin:8px 0;background:var(--surface);border:1px solid var(--line);border-radius:2px;font-size:14.5px}
+.check li::before{content:"\2610";position:absolute;left:14px;top:10px;font-size:16px;color:var(--accent-ink)}
+.course{display:block;padding:18px;margin:14px 0;background:var(--surface);border:1px solid var(--line);border-radius:2px;text-decoration:none;color:inherit}
+.course:hover{border-color:var(--line-strong)}
+.course .cn{display:inline-block;min-width:44px;height:30px;line-height:30px;text-align:center;background:var(--accent-ink);color:var(--on-accent);border-radius:2px;font:700 13px/30px var(--mono);margin-right:10px;padding:0 10px}
+.course h3{margin:0 0 6px;font-size:17px}
+.course p{margin:0;font-size:14px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:20px 0}
+.kv>div{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:16px}
+.kv h4{margin:0 0 8px;font-size:14.5px}
+.kv p{margin:0;font-size:13.5px;color:var(--muted)}
+@media(max-width:640px){.kv{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -470,10 +501,10 @@ a.nav-mark{text-decoration:none;color:inherit}
   <header class="hero">
     <div class="wrap">
       <div class="article">
-        <div class="crumb"><a href="/">首页</a> / <a href="/school/what-is-quant.html">量化学院</a> / 正文</div>
-        <p class="eyebrow">第一阶段 · 认知篇</p>
-        <h1>量化交易到底是什么？真能赚钱吗</h1>
-        <p class="lede">一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。</p>
+        <div class="crumb"><a href="/">首页</a> / <a href="/school/">学院首页</a> / 旗舰系列</div>
+        <p class="eyebrow">旗舰系列 · 第 3 课 / 共 5 课</p>
+        <h1>双均线策略回测：复制粘贴就能跑</h1>
+        <p class="lede">一句话讲双均线：短期均线向上穿过长期均线叫“金叉”，买入；向下跌破叫“死叉”，卖出。这一课你会跑通一份完整的回测代码——这是量化里程碑式的一步。</p>
       </div>
     </div>
   </header>
@@ -490,57 +521,82 @@ a.nav-mark{text-decoration:none;color:inherit}
     <div class="wrap">
       <article class="article">
 
-<p>一句话先说清楚：<strong>量化交易，就是用写清楚的规则代替拍脑袋，来做买卖决策。</strong></p>
-<p>主观交易者看盘凭"感觉"——"这只股好像要涨"。量化交易者不赌感觉，他把"好像要涨"翻译成一条条能验证的规则：什么条件下买、买多少、什么条件下卖、亏多少认赔。然后用历史数据检验这套规则，最后让程序自动执行。</p>
+<p>先说人话：<strong>回测就是用历史数据把策略"演"一遍</strong>。如果 2020–2024 年按这个规则买卖能赚钱，策略才有继续看的价值；如果历史数据上都赚不到，真钱就更别想了。</p>
+<p>下面这份代码用<strong>模拟数据</strong>（<code>np.random.seed(42)</code> 固定种子，每次跑结果都一样），保证人人能跑通。存为 <code>ma_backtest.py</code> 运行：</p>
+<div class="codeblock"><pre>import numpy as np
+import pandas as pd
 
-<h2>量化 vs 主观：一张表看懂</h2>
-<div class="vs">
-  <div><h4>主观交易</h4><p>靠经验、盘感、消息做决策；情绪波动大，今天敢买明天不敢；一套方法很难完整复述给别人。</p></div>
-  <div><h4>量化交易</h4><p>靠规则、数据、统计做决策；情绪被程序隔离；每条规则都能写下来、回测、复现。</p></div>
-</div>
-<p>注意：量化不等于"稳赚"，也不等于"高频"。它只是一种<strong>更诚实</strong>的工作方法——把假设写清楚，把风险算出来，再用数据检验。</p>
+np.random.seed(42)  # 固定随机种子：每次跑结果都一样
+n = 1000
+rets = np.random.normal(0.0005, 0.015, n)   # 模拟日收益率
+price = 100 * np.exp(np.cumsum(rets))        # 生成模拟价格
+df = pd.DataFrame({"close": price})
 
-<h2>量化的三个支柱</h2>
-<ul>
-  <li><strong>策略逻辑</strong>：你赚的是什么钱？是趋势的钱、均值回归的钱，还是信息差的钱？说不清赚什么钱的策略，走不远。</li>
-  <li><strong>数据</strong>：策略的"粮食"。数据错一位小数，回测结果可能全反。免费行情源后面教程会给清单。</li>
-  <li><strong>执行与风控</strong>：再好的策略，满仓一次黑天鹅就归零。仓位管理和止损不是"补丁"，是策略本身的一部分。</li>
-</ul>
+fast, slow = 5, 20
+df["ma_fast"] = df["close"].rolling(fast).mean()
+df["ma_slow"] = df["close"].rolling(slow).mean()
 
-<h2>真能赚钱吗？说点实在的</h2>
-<p><strong>机构能量化赚钱</strong>，因为人家有三样东西：便宜的数据、极快的执行、低到散户无法想象的交易成本。这是军备竞赛。</p>
-<p><strong>散户量化难在哪</strong>：不是难在"写不出代码"——恰恰相反，代码现在是最不值钱的一环。难在三件事：第一，交易成本（手续费+滑点）会吃掉大部分小策略的利润；第二，执行速度拼不过；第三，也是最重要的，<strong>大多数人死在风险管理上，而不是策略上</strong>。</p>
-<p><strong>AI 时代变了什么</strong>：以前挡住新人的第一道墙是"不会写代码"，现在这道墙没了。你可以让 AI 帮你写策略、写回测、解释报错。竞争从"谁会写代码"变成了"谁有靠谱的想法、谁纪律严明、谁风控到位"。这三样，AI 替不了你。</p>
-<p>所以我们的定位很清楚：<strong>不教你预测涨跌，教你一套动手的方法</strong>——有想法 → 写成规则 → 用数据验证 → 小仓位试 → 严格风控。</p>
+# 金叉持有、死叉空仓；shift(1) 保证用"昨天"的信号做"今天"的决策
+df["signal"] = (df["ma_fast"] > df["ma_slow"]).astype(int)
+df["position"] = df["signal"].shift(1).fillna(0)
 
-<h2>动手：你的第一段"量化代码"</h2>
-<p>别被代码吓到。下面这 5 行，算的是一笔投资的收益率——这是所有量化的起点。复制到 Python 里就能跑：</p>
-<div class="codeblock"><pre>buy_price = 100   # 买入价
-sell_price = 112  # 卖出价
-ret = (sell_price - buy_price) / buy_price
-print(f"收益率: {ret:.1%}")  # 输出: 收益率: 12.0%</pre></div>
-<p>量化就是把这样的计算，重复成千上万次，加到历史数据上。</p>
+df["ret"] = df["close"].pct_change().fillna(0)
+cost = 0.0003                      # 万3：手续费+滑点假设
+trades = df["position"].diff().abs().fillna(0)
+df["strat_ret"] = df["position"] * df["ret"] - trades * cost
+df["equity"] = (1 + df["strat_ret"]).cumprod()
 
-<h2>AI 提示词：直接复制去用</h2>
+total = df["equity"].iloc[-1] - 1
+ann = (1 + total) ** (250 / n) - 1          # 年化（按250个交易日）
+max_dd = ((df["equity"] - df["equity"].cummax())
+          / df["equity"].cummax()).min()     # 最大回撤
+n_trades = int((df["position"].diff() == 1).sum())
+win_rate = (df.loc[df["position"] == 1, "ret"] > 0).mean()
+
+print(f"总收益率: {total:.1%}")
+print(f"年化收益率: {ann:.1%}")
+print(f"最大回撤: {max_dd:.1%}")
+print(f"开仓次数: {n_trades}")
+print(f"持有日胜率: {win_rate:.1%}")</pre></div>
+
+<div class="ok"><strong>预期输出</strong>（下面是我们真实运行的结果，你跑出来应该一模一样）：
+<pre>总收益率: 71.8%
+年化收益率: 14.5%
+最大回撤: -24.7%
+开仓次数: 31
+持有日胜率: 52.1%</pre></div>
+
+<table class="spec">
+<tr><th>指标</th><th>这份结果</th><th>人话解读</th></tr>
+<tr><td>总收益率 71.8%</td><td>1000 个交易日赚 71.8%</td><td>看着美，记住这是模拟数据</td></tr>
+<tr><td>年化 14.5%</td><td>平均每年 14.5%</td><td>和总收益是同一个意思，换成年化方便对比</td></tr>
+<tr><td>最大回撤 -24.7%</td><td>最惨时从高点亏 24.7%</td><td><strong>最重要的指标</strong>：你能不能拿住？亏 1/4 时睡得着吗</td></tr>
+<tr><td>开仓 31 次</td><td>约每月交易 1 次</td><td>交易频率，频率越高成本吃得越多</td></tr>
+<tr><td>持有日胜率 52.1%</td><td>持有日子里 52% 是涨的</td><td>刚过一半——趋势策略靠"截断亏损、让利润奔跑"，不是靠高胜率</td></tr>
+</table>
+
+<div class="step"><h3><span class="sn">★</span>换成你的真实数据</h3>
+<p>把代码前 6 行换成下面两行（用第 2 课下载的 CSV），后面一行不用动：</p>
+<div class="codeblock"><pre>df = pd.read_csv("pingan_000001.csv")
+df = df.rename(columns={"收盘": "close"})  # 列名对齐，后面代码不动</pre></div>
+<p>注意：真实数据只有几百行，<code>n = 1000</code> 那几行模拟数据的代码要删掉，年化公式里的 <code>n</code> 改成 <code>len(df)</code>。让 AI 帮你改——这是很好的练习。</p></div>
+
 <div class="prompt"><span class="tag">PROMPT · 复制粘贴</span>
-<p>把下面这段发给任何 AI（ChatGPT、Claude、豆包都行），让它当你的量化启蒙老师：</p>
-<code>我是量化交易零基础新手。请用打比方的方式，给我讲清楚这三个概念：1）均线策略 2）回测 3）最大回撤。每个概念配一个生活中的例子，最后出一道选择题考我。</code>
-</div>
-<div class="prompt"><span class="tag">PROMPT · 复制粘贴</span>
-<p>当你有一个模糊的想法（比如"跌多了会反弹"），让 AI 帮你把它变成可验证的规则：</p>
-<code>我想验证一个想法："股票连跌 3 天后买入，持有 5 天卖出，大概率赚钱"。请帮我：1）把这句话翻译成精确的交易规则（入场、离场、仓位）；2）指出这个想法里至少 2 个逻辑漏洞；3）告诉我验证它需要什么数据。</code>
+<p>让 AI 当你的代码讲解员：</p>
+<code>下面是我的双均线回测代码：[粘贴代码]。请：1）逐段解释每一行在干什么；2）指出如果我想把 5/20 改成 10/30，要改哪几行；3）告诉我这份代码里关于交易成本的假设是什么。</code>
 </div>
 
-<div class="quiz"><h4>自测 3 道（心里有答案再往下）</h4>
-<ol>
-  <li>量化交易和主观交易最根本的区别是什么？</li>
-  <li>为什么说"代码是量化里最不值钱的一环"？</li>
-  <li>一个策略回测年化 50%，你第一反应应该问什么？（提示：看"三个支柱"缺了哪根）</li>
+<div class="warn"><strong>先别高兴：</strong>这组漂亮数字来自带趋势的模拟数据，<strong>不代表任何真实收益</strong>。而且"回测好看"本身可能是骗局——下一课，我们用同一份代码演示：只改一行，收益就能"吹"高 2.5 倍。</div>
+
+<div class="quiz"><h4>自测 3 道</h4><ol>
+<li><code>shift(1)</code> 是干什么的？（一句话）</li>
+<li>最大回撤 -24.7% 是什么意思？为什么说它是最重要的指标？</li>
+<li>代码里为什么要扣 <code>cost</code>？不扣会怎样？</li>
 </ol></div>
 
 <div class="pager">
-  <a class="button" href="/">← 返回首页</a>
-  <a class="button primary" href="/school/seven-pitfalls.html">下一篇：新手必踩的 7 个坑 →</a>
+  <a class="button" href="/school/ai-strategy-2.html">← 上一篇：第 2 课 免费数据</a>
+  <a class="button primary" href="/school/ai-strategy-4.html">下一篇：第 4 课 别信 AI →</a>
 </div>
 
       </article>
@@ -557,7 +613,7 @@ print(f"收益率: {ret:.1%}")  # 输出: 收益率: 12.0%</pre></div>
 
   <footer>
     <div class="wrap footer-inner">
-      <span>量化学院 · 第一阶段认知篇 · 最后更新：2026-09-29</span>
+      <span>量化学院 · 旗舰系列第 3 课 · 最后更新：2026-09-29</span>
       <a href="/">返回首页 ↑</a>
     </div>
   </footer>

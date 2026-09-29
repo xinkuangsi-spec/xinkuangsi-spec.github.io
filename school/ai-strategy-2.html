@@ -12,17 +12,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
-  <title>量化交易到底是什么？真能赚钱吗 | 量化学院</title>
-  <meta name="description" content="一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。" />
-  <meta name="keywords" content="量化交易是什么,量化入门,量化能赚钱吗,量化交易教程,AI写策略" />
-  <link rel="canonical" href="https://xinkuangsi-spec.github.io/school/what-is-quant.html" />
+  <title>AI写策略第2课：免费数据三选一，先拿到“粮食” | 量化学院</title>
+  <meta name="description" content="A股免费数据源对比：AkShare、Tushare、BaoStock哪个好？附可运行的Python数据下载代码、前复权讲解和AI写数据代码的提示词。" />
+  <meta name="keywords" content="A股免费数据,AkShare教程,Tushare,BaoStock,股票数据下载,量化数据源" />
+  <link rel="canonical" href="https://xinkuangsi-spec.github.io/school/ai-strategy-2.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="量化交易到底是什么？真能赚钱吗" />
-  <meta property="og:description" content="一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。" />
-  <meta property="og:url" content="https://xinkuangsi-spec.github.io/school/what-is-quant.html" />
+  <meta property="og:title" content="AI写策略第2课：免费数据三选一，先拿到“粮食”" />
+  <meta property="og:description" content="A股免费数据源对比：AkShare、Tushare、BaoStock哪个好？附可运行的Python数据下载代码、前复权讲解和AI写数据代码的提示词。" />
+  <meta property="og:url" content="https://xinkuangsi-spec.github.io/school/ai-strategy-2.html" />
   <meta name="twitter:card" content="summary" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Article","headline":"量化交易到底是什么？真能赚钱吗","description":"一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。","inLanguage":"zh-CN","author":{"@type":"Organization","name":"量化发展史与教程"},"publisher":{"@type":"Organization","name":"量化发展史与教程"},"mainEntityOfPage":"https://xinkuangsi-spec.github.io/school/what-is-quant.html","datePublished":"2026-09-29"}
+  {"@context": "https://schema.org", "@type": "Article", "headline": "AI写策略第2课：免费数据三选一，先拿到“粮食”", "description": "A股免费数据源对比：AkShare、Tushare、BaoStock哪个好？附可运行的Python数据下载代码、前复权讲解和AI写数据代码的提示词。", "inLanguage": "zh-CN", "author": {"@type": "Organization", "name": "量化发展史与教程"}, "publisher": {"@type": "Organization", "name": "量化发展史与教程"}, "mainEntityOfPage": "https://xinkuangsi-spec.github.io/school/ai-strategy-2.html", "datePublished": "2026-09-29"}
   </script>
 <style>
     @font-face { font-family: "Inter Fallback"; src: local("Arial"); ascent-override: 90.44%; descent-override: 22.52%; line-gap-override: 0%; size-adjust: 107.12%; }
@@ -447,6 +447,37 @@
 @media(max-width:640px){.vs{grid-template-columns:1fr}}
 .article h1{font-size:clamp(30px,5vw,52px);line-height:1.18;letter-spacing:0;margin:14px 0 16px;text-wrap:balance}
 a.nav-mark{text-decoration:none;color:inherit}
+
+.toc{margin:24px 0;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:2px}
+.toc h4{margin:0 0 10px;font-size:14px;letter-spacing:.06em}
+.toc ol{margin:0;padding-left:20px;font-size:14.5px;color:var(--muted)}
+.toc a{color:var(--accent-ink);text-decoration:none}
+.step{margin:26px 0;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:2px}
+.step h3{margin:0 0 10px;font-size:17px}
+.step h3 .sn{display:inline-block;min-width:28px;height:28px;line-height:28px;text-align:center;background:var(--ink);color:var(--paper);border-radius:50%;font-size:13px;margin-right:10px}
+.step p{margin:0 0 8px;font-size:15px}
+.step ul{margin:8px 0;font-size:15px}
+.warn{margin:24px 0;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent-ink);border-radius:2px;font-size:14.5px}
+.warn strong{color:var(--accent-ink)}
+.ok{margin:24px 0;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:2px;font-size:14.5px}
+.ok strong{color:var(--green)}
+.ok pre{margin:8px 0 0;font-family:var(--mono);font-size:13.5px;line-height:1.75;white-space:pre-wrap}
+table.spec{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px}
+table.spec th,table.spec td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+table.spec th{background:var(--surface-2);font-size:13.5px;white-space:nowrap}
+.check{list-style:none;margin:16px 0;padding:0}
+.check li{position:relative;padding:10px 12px 10px 40px;margin:8px 0;background:var(--surface);border:1px solid var(--line);border-radius:2px;font-size:14.5px}
+.check li::before{content:"\2610";position:absolute;left:14px;top:10px;font-size:16px;color:var(--accent-ink)}
+.course{display:block;padding:18px;margin:14px 0;background:var(--surface);border:1px solid var(--line);border-radius:2px;text-decoration:none;color:inherit}
+.course:hover{border-color:var(--line-strong)}
+.course .cn{display:inline-block;min-width:44px;height:30px;line-height:30px;text-align:center;background:var(--accent-ink);color:var(--on-accent);border-radius:2px;font:700 13px/30px var(--mono);margin-right:10px;padding:0 10px}
+.course h3{margin:0 0 6px;font-size:17px}
+.course p{margin:0;font-size:14px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:20px 0}
+.kv>div{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:16px}
+.kv h4{margin:0 0 8px;font-size:14.5px}
+.kv p{margin:0;font-size:13.5px;color:var(--muted)}
+@media(max-width:640px){.kv{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -470,10 +501,10 @@ a.nav-mark{text-decoration:none;color:inherit}
   <header class="hero">
     <div class="wrap">
       <div class="article">
-        <div class="crumb"><a href="/">首页</a> / <a href="/school/what-is-quant.html">量化学院</a> / 正文</div>
-        <p class="eyebrow">第一阶段 · 认知篇</p>
-        <h1>量化交易到底是什么？真能赚钱吗</h1>
-        <p class="lede">一句话讲清量化交易：用写清楚的规则代替拍脑袋。对比主观交易、拆解三个支柱、诚实回答散户能不能赚钱，以及AI时代新人该怎么起步。</p>
+        <div class="crumb"><a href="/">首页</a> / <a href="/school/">学院首页</a> / 旗舰系列</div>
+        <p class="eyebrow">旗舰系列 · 第 2 课 / 共 5 课</p>
+        <h1>免费数据三选一，先拿到“粮食”</h1>
+        <p class="lede">策略是菜谱，数据是食材。A 股有三个主流免费数据源，这一课你选定一个，并且亲手下载第一份真实日 K 数据。</p>
       </div>
     </div>
   </header>
@@ -490,57 +521,65 @@ a.nav-mark{text-decoration:none;color:inherit}
     <div class="wrap">
       <article class="article">
 
-<p>一句话先说清楚：<strong>量化交易，就是用写清楚的规则代替拍脑袋，来做买卖决策。</strong></p>
-<p>主观交易者看盘凭"感觉"——"这只股好像要涨"。量化交易者不赌感觉，他把"好像要涨"翻译成一条条能验证的规则：什么条件下买、买多少、什么条件下卖、亏多少认赔。然后用历史数据检验这套规则，最后让程序自动执行。</p>
+<p>先说人话：<strong>没有数据，策略就是空谈</strong>。回测要用的"历史股价"，对 A 股新手有三个免费选择：</p>
+<table class="spec">
+<tr><th>数据源</th><th>要不要注册</th><th>怎么拿</th><th>特点</th></tr>
+<tr><td><strong>AkShare</strong></td><td>不用</td><td><code>pip install akshare</code></td><td>★ 新手首选。接口全，A 股、基金、期货都有；缺点是函数名偶尔会变，以官方文档为准</td></tr>
+<tr><td><strong>Tushare</strong></td><td>要（免费 token）</td><td>官网注册拿 token</td><td>数据规范、文档全；免费有积分限制，高频调用会受限</td></tr>
+<tr><td><strong>BaoStock</strong></td><td>不用</td><td><code>pip install baostock</code></td><td>历史数据长，不用注册；更新速度稍慢</td></tr>
+</table>
+<p><strong>建议：新手先用 AkShare</strong>，不用注册，一行命令装好，先跑起来再说。</p>
 
-<h2>量化 vs 主观：一张表看懂</h2>
-<div class="vs">
-  <div><h4>主观交易</h4><p>靠经验、盘感、消息做决策；情绪波动大，今天敢买明天不敢；一套方法很难完整复述给别人。</p></div>
-  <div><h4>量化交易</h4><p>靠规则、数据、统计做决策；情绪被程序隔离；每条规则都能写下来、回测、复现。</p></div>
-</div>
-<p>注意：量化不等于"稳赚"，也不等于"高频"。它只是一种<strong>更诚实</strong>的工作方法——把假设写清楚，把风险算出来，再用数据检验。</p>
+<div class="step"><h3><span class="sn">1</span>下载第一份真实数据</h3>
+<p>新建 <code>get_data.py</code>，复制运行：</p>
+<div class="codeblock"><pre>import akshare as ak
 
-<h2>量化的三个支柱</h2>
-<ul>
-  <li><strong>策略逻辑</strong>：你赚的是什么钱？是趋势的钱、均值回归的钱，还是信息差的钱？说不清赚什么钱的策略，走不远。</li>
-  <li><strong>数据</strong>：策略的"粮食"。数据错一位小数，回测结果可能全反。免费行情源后面教程会给清单。</li>
-  <li><strong>执行与风控</strong>：再好的策略，满仓一次黑天鹅就归零。仓位管理和止损不是"补丁"，是策略本身的一部分。</li>
-</ul>
+# 下载平安银行(000001) 2024年至今的日K线
+df = ak.stock_zh_a_hist(symbol="000001", period="daily",
+                        start_date="20240101", end_date="20261231",
+                        adjust="qfq")  # qfq=前复权：除权除息不断裂
+print("共", len(df), "行")
+print(df[["日期", "开盘", "收盘", "最高", "最低", "成交量"]].head())
+df.to_csv("pingan_000001.csv", index=False)
+print("已保存为 pingan_000001.csv")</pre></div></div>
 
-<h2>真能赚钱吗？说点实在的</h2>
-<p><strong>机构能量化赚钱</strong>，因为人家有三样东西：便宜的数据、极快的执行、低到散户无法想象的交易成本。这是军备竞赛。</p>
-<p><strong>散户量化难在哪</strong>：不是难在"写不出代码"——恰恰相反，代码现在是最不值钱的一环。难在三件事：第一，交易成本（手续费+滑点）会吃掉大部分小策略的利润；第二，执行速度拼不过；第三，也是最重要的，<strong>大多数人死在风险管理上，而不是策略上</strong>。</p>
-<p><strong>AI 时代变了什么</strong>：以前挡住新人的第一道墙是"不会写代码"，现在这道墙没了。你可以让 AI 帮你写策略、写回测、解释报错。竞争从"谁会写代码"变成了"谁有靠谱的想法、谁纪律严明、谁风控到位"。这三样，AI 替不了你。</p>
-<p>所以我们的定位很清楚：<strong>不教你预测涨跌，教你一套动手的方法</strong>——有想法 → 写成规则 → 用数据验证 → 小仓位试 → 严格风控。</p>
+<div class="ok"><strong>预期输出</strong>：<br>
+<pre>共 6xx 行
+         日期     开盘     收盘     最高     最低        成交量
+0  2024-01-02  10.12  10.20  10.25  10.02  1234567
+...
+已保存为 pingan_000001.csv</pre>
+行数每次跑可能不一样（数据在更新），这是正常的。列名是中文（日期/开盘/收盘……），第 3 课会统一处理。</div>
 
-<h2>动手：你的第一段"量化代码"</h2>
-<p>别被代码吓到。下面这 5 行，算的是一笔投资的收益率——这是所有量化的起点。复制到 Python 里就能跑：</p>
-<div class="codeblock"><pre>buy_price = 100   # 买入价
-sell_price = 112  # 卖出价
-ret = (sell_price - buy_price) / buy_price
-print(f"收益率: {ret:.1%}")  # 输出: 收益率: 12.0%</pre></div>
-<p>量化就是把这样的计算，重复成千上万次，加到历史数据上。</p>
+<div class="step"><h3><span class="sn">2</span>装不上？备用方案</h3>
+<p>如果 akshare 装不上或没网，先用模拟数据顶上——后面课程全部兼容：</p>
+<div class="codeblock"><pre>import pandas as pd, numpy as np
+np.random.seed(42)
+dates = pd.date_range("2024-01-01", periods=250, freq="B")
+price = 100 * np.exp(np.cumsum(np.random.normal(0.0005, 0.015, 250)))
+df = pd.DataFrame({"日期": dates, "收盘": price})
+df.to_csv("demo.csv", index=False)
+print("已生成模拟数据 demo.csv，共", len(df), "行")</pre></div></div>
 
-<h2>AI 提示词：直接复制去用</h2>
 <div class="prompt"><span class="tag">PROMPT · 复制粘贴</span>
-<p>把下面这段发给任何 AI（ChatGPT、Claude、豆包都行），让它当你的量化启蒙老师：</p>
-<code>我是量化交易零基础新手。请用打比方的方式，给我讲清楚这三个概念：1）均线策略 2）回测 3）最大回撤。每个概念配一个生活中的例子，最后出一道选择题考我。</code>
-</div>
-<div class="prompt"><span class="tag">PROMPT · 复制粘贴</span>
-<p>当你有一个模糊的想法（比如"跌多了会反弹"），让 AI 帮你把它变成可验证的规则：</p>
-<code>我想验证一个想法："股票连跌 3 天后买入，持有 5 天卖出，大概率赚钱"。请帮我：1）把这句话翻译成精确的交易规则（入场、离场、仓位）；2）指出这个想法里至少 2 个逻辑漏洞；3）告诉我验证它需要什么数据。</code>
+<p>让 AI 帮你写数据代码——关键是把要求说具体：</p>
+<code>请帮我写一段 Python 代码，用 akshare 下载指定A股的日K数据，要求：1）我只需要输入股票代码和起止日期；2）自动做前复权处理；3）下载失败时重试3次并打印清楚报错原因；4）保存为 CSV。请逐行注释，假设我是零基础。</code>
 </div>
 
-<div class="quiz"><h4>自测 3 道（心里有答案再往下）</h4>
-<ol>
-  <li>量化交易和主观交易最根本的区别是什么？</li>
-  <li>为什么说"代码是量化里最不值钱的一环"？</li>
-  <li>一个策略回测年化 50%，你第一反应应该问什么？（提示：看"三个支柱"缺了哪根）</li>
+<div class="warn"><strong>AI 写数据代码时，盯住这三处：</strong><br>
+1）<strong>函数名版本变化</strong>：AkShare 的函数名偶尔会改（如 stock_zh_a_hist），如果 AI 写的跑不通，让它"按 AkShare 最新文档重写"。<br>
+2）<strong>复权</strong>：不做前复权，除权除息那天会被当成"暴跌"，信号全错。A 股做策略默认用前复权（qfq）。<br>
+3）<strong>停牌缺失</strong>：下载完先 <code>print(df.isnull().sum())</code> 看有没有空值，有空值先处理再回测。</div>
+
+<div class="quiz"><h4>自测 3 道</h4><ol>
+<li>为什么推荐新手先用 AkShare？（两个理由）</li>
+<li>qfq 是什么意思？不做复权会发生什么？</li>
+<li>数据下载失败，第一步做什么？（答案：看报错原文，别猜）</li>
 </ol></div>
 
 <div class="pager">
-  <a class="button" href="/">← 返回首页</a>
-  <a class="button primary" href="/school/seven-pitfalls.html">下一篇：新手必踩的 7 个坑 →</a>
+  <a class="button" href="/school/ai-strategy-1.html">← 上一篇：第 1 课 装好环境</a>
+  <a class="button primary" href="/school/ai-strategy-3.html">下一篇：第 3 课 双均线回测 →</a>
 </div>
 
       </article>
@@ -557,7 +596,7 @@ print(f"收益率: {ret:.1%}")  # 输出: 收益率: 12.0%</pre></div>
 
   <footer>
     <div class="wrap footer-inner">
-      <span>量化学院 · 第一阶段认知篇 · 最后更新：2026-09-29</span>
+      <span>量化学院 · 旗舰系列第 2 课 · 最后更新：2026-09-29</span>
       <a href="/">返回首页 ↑</a>
     </div>
   </footer>
