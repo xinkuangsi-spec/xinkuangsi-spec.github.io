@@ -18,6 +18,13 @@
 - 量化学院（学习路径）: https://xinkuangsi-spec.github.io/#school
   - 量化交易到底是什么: https://xinkuangsi-spec.github.io/school/what-is-quant.html
   - 新手必踩的7个坑: https://xinkuangsi-spec.github.io/school/seven-pitfalls.html
+  - 量化学院首页: https://xinkuangsi-spec.github.io/school/
+  - 学习路径（六步）: https://xinkuangsi-spec.github.io/school/path.html
+  - AI写策略第1课·装好环境: https://xinkuangsi-spec.github.io/school/ai-strategy-1.html
+  - AI写策略第2课·免费数据三选一: https://xinkuangsi-spec.github.io/school/ai-strategy-2.html
+  - AI写策略第3课·双均线回测: https://xinkuangsi-spec.github.io/school/ai-strategy-3.html
+  - AI写策略第4课·6个必查项: https://xinkuangsi-spec.github.io/school/ai-strategy-4.html
+  - AI写策略第5课·实盘前检查清单: https://xinkuangsi-spec.github.io/school/ai-strategy-5.html
 
 ## 内容说明
 
